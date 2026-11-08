@@ -1,5 +1,5 @@
 -- =========================================================
--- Script SQL (MySQL / MariaDB) - Salão de Beleza (modelo lógico)
+-- Script SQL (MySQL / PostgreSQL) - Salão de Beleza (modelo lógico)
 -- =========================================================
 
 CREATE DATABASE IF NOT EXISTS salao_beleza;
