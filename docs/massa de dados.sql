@@ -29,7 +29,6 @@ INSERT INTO Profissional (id_profissional, nome, telefone, ativo) VALUES
 (2, 'Rafael Moreira',  '(11) 99100-0002', TRUE),
 (3, 'Juliana Pires',   '(11) 99100-0003', TRUE),
 (4, 'Patrícia Lima',   '(11) 99100-0004', TRUE),
-(5, 'Bruno Tavares',   '(11) 99100-0005', FALSE);
 
 -- ---------------------------------------------------------
 -- Especialidade
@@ -48,8 +47,7 @@ INSERT INTO Profissional_Especialidade (id_profissional, id_especialidade) VALUE
 (1, 1), (1, 2), (1, 3),
 (2, 1),
 (3, 4),
-(4, 5),
-(5, 1), (5, 2);
+(4, 5);
 
 -- ---------------------------------------------------------
 -- Procedimento
