@@ -22,41 +22,48 @@ Com base nas informações levantadas, o estabelecimento conta com aproximadamen
 
 ### 1.3 Problemas e necessidades identificados
 
-Os problemas e as necessidades apresentados nesta seção foram identificados a partir das informações levantadas durante a entrevista.
+Os problemas abaixo foram identificados a partir das informações obtidas durante a entrevista e da análise dos processos administrativos do Salão dos Primos.
 
-- **P1 — Organização dos dados dos clientes:** necessidade de manter as informações de identificação e contato dos clientes organizadas e disponíveis para consulta.
-- **P2 — Organização dos agendamentos:** necessidade de registrar e consultar os atendimentos, relacionando clientes, profissionais, procedimentos, datas e horários.
-- **P3 — Controle de profissionais e especialidades:** necessidade de identificar os profissionais disponíveis e os procedimentos que cada um pode realizar.
-- **P4 — Acompanhamento dos atendimentos:** necessidade de consultar a situação dos agendamentos e manter registros organizados dos atendimentos.
-- **P5 — Controle financeiro:** necessidade de organizar os pagamentos recebidos e consultar os valores por período.
-- **P6 — Controle de insumos:** necessidade de acompanhar os materiais utilizados, as quantidades disponíveis e a reposição de estoque.
-- **P7 — Organização de compras e fornecedores:** possibilidade de registrar fornecedores, compras realizadas e os itens adquiridos.
-- **P8 — Definição de preços dos procedimentos:** necessidade de registrar valores individualizados, considerando a avaliação das condições e do comprimento do cabelo do cliente, além do procedimento solicitado.
+- **P1 — Agenda sem verificação de conflitos:** os agendamentos são registrados manualmente em caderno e WhatsApp, sem um mecanismo que impeça a sobreposição de horários de um mesmo profissional.
+- **P2 — Ausência de histórico organizado:** não existe um registro centralizado que permita consultar facilmente o histórico de atendimentos por cliente, profissional ou procedimento.
+- **P3 — Cancelamentos e remarcações sem registro estruturado:** os cancelamentos e as alterações de horários são comunicados pelo WhatsApp, dificultando o acompanhamento e a consulta dessas ocorrências.
+- **P4 — Valores e recebimentos sem controle centralizado:** os preços são definidos após a avaliação do cabelo do cliente, mas não existe um registro informatizado centralizado dos valores acordados e recebidos por atendimento.
+- **P5 — Insumos e compras sem controle informatizado:** não existe um sistema para acompanhar as compras realizadas, os fornecedores, as quantidades de insumos disponíveis e a necessidade de reposição.
 
-**Observação:** os módulos financeiros, de estoque e de fornecedores deverão representar os procedimentos efetivamente realizados pelo salão. As informações deverão ser validadas com a responsável.
+Esses problemas fundamentam a proposta do banco de dados e estão relacionados às entidades e consultas gerenciais apresentadas no README.md.
+
+### 1.3 Problemas e necessidades identificados
+
+Os problemas abaixo foram identificados a partir das informações obtidas durante a entrevista e da análise dos processos administrativos do Salão dos Primos.
+
+- **P1 — Agenda sem verificação de conflitos:** os agendamentos são registrados manualmente em caderno e WhatsApp, sem um mecanismo que impeça a sobreposição de horários de um mesmo profissional.
+- **P2 — Ausência de histórico organizado:** não existe um registro centralizado que permita consultar facilmente o histórico de atendimentos por cliente, profissional ou procedimento.
+- **P3 — Cancelamentos e remarcações sem registro estruturado:** os cancelamentos e as alterações de horários são comunicados pelo WhatsApp, dificultando o acompanhamento e a consulta dessas ocorrências.
+- **P4 — Valores e recebimentos sem controle centralizado:** os preços são definidos após a avaliação do cabelo do cliente, mas não existe um registro informatizado centralizado dos valores acordados e recebidos por atendimento.
+- **P5 — Insumos e compras sem controle informatizado:** não existe um sistema para acompanhar as compras realizadas, os fornecedores, as quantidades de insumos disponíveis e a necessidade de reposição.
+
+Esses problemas fundamentam a proposta do banco de dados e estão relacionados às entidades e consultas gerenciais apresentadas no README.md.
 
 ### 1.4 Escopo do sistema
 
-O projeto propõe a criação de um banco de dados relacional para organizar as informações do Salão dos Primos.
-
-O escopo preliminar do modelo lógico contempla:
+O projeto propõe um banco de dados relacional para organizar as informações do Salão dos Primos, contemplando os seguintes processos:
 
 - Cadastro de clientes.
 - Cadastro de profissionais.
-- Cadastro de especialidades.
-- Associação entre profissionais e especialidades.
+- Cadastro e associação de especialidades.
 - Cadastro de procedimentos.
-- Registro de agendamentos.
-- Registro dos valores definidos para os procedimentos.
+- Registro e consulta de agendamentos.
+- Controle de cancelamentos, remarcações e atendimentos concluídos.
 - Registro de pagamentos.
 - Cadastro de fornecedores.
-- Registro de compras.
-- Registro dos itens de cada compra.
+- Registro de compras e itens adquiridos.
 - Cadastro de insumos.
 - Controle de movimentações de estoque.
 - Registro de fechamentos de caixa.
 
-O escopo definitivo deverá contemplar os processos existentes na organização. Os módulos financeiros e de estoque deverão ser mantidos de acordo com as informações confirmadas pela responsável e com os objetivos definidos para o projeto.
+O modelo contempla 13 entidades: Cliente, Profissional, Especialidade, Profissional_Especialidade, Procedimento, Agendamento, Pagamento, Fornecedor, Compra, Item_Compra, Insumo, Movimentacao_Estoque e Fechamento_Caixa.
+
+O sistema é uma proposta de informatização. Atualmente, o salão continua utilizando registros manuais e comunicação pelo WhatsApp.
 
 ### 1.5 Justificativa da escolha
 
@@ -303,26 +310,23 @@ Processo proposto para registrar os fechamentos financeiros por período, consid
 
 | Código | Descrição |
 |---|---|
-| RF01 | O sistema deverá permitir cadastrar clientes com identificador, nome, telefone e e-mail. |
-| RF02 | O sistema deverá permitir consultar e atualizar os dados dos clientes cadastrados. |
-| RF03 | O sistema deverá permitir cadastrar profissionais com identificador, nome, telefone e situação de atividade. |
-| RF04 | O sistema deverá permitir cadastrar especialidades por meio de identificador e nome. |
-| RF05 | O sistema deverá permitir associar profissionais às especialidades que realizam. |
-| RF06 | O sistema deverá permitir cadastrar procedimentos com nome, descrição e duração estimada, sem exigir um preço fixo. |
-| RF07 | O sistema deverá permitir registrar agendamentos relacionando cliente, profissional e procedimento. |
-| RF08 | O sistema deverá armazenar data, horário de início, horário de término, situação e observações de cada agendamento. |
-| RF09 | O sistema deverá permitir consultar agendamentos por cliente, profissional, procedimento e período. |
-| RF10 | O sistema deverá permitir atualizar a situação de um agendamento. |
-| RF11 | O sistema deverá permitir registrar o valor definido para cada atendimento após a avaliação do cabelo do cliente. |
-| RF12 | O sistema deverá permitir registrar pagamentos com valor, data, forma de pagamento e agendamento relacionado. |
-| RF13 | O sistema deverá permitir cadastrar fornecedores com identificador e nome. |
-| RF14 | O sistema deverá permitir registrar compras com fornecedor e data da compra. |
-| RF15 | O sistema deverá permitir registrar os itens de cada compra com insumo, quantidade e valor unitário. |
-| RF16 | O sistema deverá permitir cadastrar insumos com nome, quantidade em estoque e estoque mínimo. |
-| RF17 | O sistema deverá permitir registrar movimentações de estoque com tipo, quantidade, data e insumo relacionado. |
-| RF18 | O sistema deverá permitir relacionar uma movimentação de estoque a um agendamento, quando aplicável. |
-| RF19 | O sistema deverá permitir registrar fechamentos de caixa com data inicial, data final e total recebido. |
-| RF20 | O sistema deverá permitir gerar consultas sobre agendamentos, pagamentos, compras e estoque. |
+| RF01 | Cadastrar cliente com nome completo, telefone com DDD, e-mail (opcional), data de cadastro e observações. |
+| RF02 | Cadastrar procedimento com nome, descrição, duração estimada (em minutos) e preço de referência. |
+| RF03 | Cadastrar profissional com nome completo, telefone, data de admissão e situação (ativo/inativo), e vincular suas especialidades (nome e descrição). |
+| RF04 | Registrar agendamento com cliente, profissional, procedimento, data, hora de início, hora de fim, situação e observações. |
+| RF05 | Impedir conflito de horário: o mesmo profissional não pode ter dois agendamentos AGENDADO no mesmo dia com horários sobrepostos. |
+| RF06 | Cancelar agendamento, alterando a situação para CANCELADO e mantendo o registro. |
+| RF07 | Remarcar agendamento, alterando data, hora de início e hora de fim. |
+| RF08 | Consultar a agenda dos profissionais por dia, com cliente, procedimento e horário. |
+| RF09 | Registrar a conclusão do atendimento, alterando a situação para CONCLUIDO. |
+| RF10 | Consultar o histórico de agendamentos por cliente, profissional, procedimento e período. |
+| RF11 | Registrar pagamento com agendamento, valor pago, data e forma de pagamento (DINHEIRO, PIX, CARTAO_DEBITO ou CARTAO_CREDITO). |
+| RF12 | Cadastrar fornecedor (nome e telefone) e registrar compra (fornecedor e data). |
+| RF13 | Registrar os itens de cada compra com insumo, quantidade e valor unitário. |
+| RF14 | Cadastrar insumo com nome, unidade de medida, quantidade em estoque e estoque mínimo, e listar os que estão abaixo do mínimo. |
+| RF15 | Registrar movimentação de estoque com insumo, tipo (ENTRADA ou SAIDA), quantidade, data e, quando houver, o agendamento que consumiu o insumo. |
+| RF16 | Consultar as movimentações de estoque por insumo e por período. |
+| RF17 | Fechar o caixa por período, com data de início, data de fim e total recebido calculado pela soma dos pagamentos do período. |
 
 ---
 
@@ -343,29 +347,25 @@ Processo proposto para registrar os fechamentos financeiros por período, consid
 
 ## 6. Regras de negócio
 
-As regras abaixo foram propostas a partir das informações levantadas e da estrutura do modelo lógico. As regras que dependem da operação real deverão ser confirmadas pela responsável.
+As regras de negócio definem as condições que devem ser respeitadas pelo banco de dados para manter a consistência das informações e o funcionamento adequado dos processos propostos.
 
 | Código | Regra |
 |---|---|
-| RN01 | Cada cliente deverá possuir um identificador único. |
-| RN02 | Cada profissional deverá possuir um identificador único. |
-| RN03 | Um profissional poderá estar associado a várias especialidades. |
-| RN04 | Uma especialidade poderá estar associada a vários profissionais. |
-| RN05 | Todo agendamento deverá estar relacionado a um cliente cadastrado. |
-| RN06 | Todo agendamento deverá estar relacionado a um profissional cadastrado. |
-| RN07 | Todo agendamento deverá estar relacionado a um procedimento cadastrado. |
-| RN08 | Profissionais inativos não deverão receber novos agendamentos. |
-| RN09 | O horário final de um agendamento deverá ser posterior ao horário inicial. |
-| RN10 | Um agendamento poderá possuir, no máximo, um pagamento registrado, conforme a estrutura proposta no modelo. |
-| RN11 | Todo pagamento deverá estar relacionado a um agendamento existente. |
-| RN12 | Toda compra deverá estar relacionada a um fornecedor cadastrado. |
-| RN13 | Cada item de compra deverá estar relacionado a uma compra e a um insumo existentes. |
-| RN14 | A quantidade de um item de compra deverá ser positiva. |
-| RN15 | Toda movimentação de estoque deverá possuir um insumo, tipo, quantidade e data registrados. |
-| RN16 | Uma movimentação poderá estar relacionada a um agendamento, quando aplicável. |
-| RN17 | O fechamento de caixa deverá possuir um período válido, com data inicial anterior ou igual à data final. |
-| RN18 | O valor de cada procedimento deverá ser definido individualmente, considerando a avaliação do cabelo do cliente, seu comprimento e o procedimento solicitado. |
-| RN19 | O valor acordado para o atendimento deverá ser registrado no respectivo agendamento. |
+| RN01 | Todo agendamento deve estar associado a um cliente cadastrado. |
+| RN02 | Todo agendamento deve estar associado a um profissional. |
+| RN03 | Todo agendamento deve estar associado a um procedimento. |
+| RN04 | Um profissional não pode ter agendamentos AGENDADO no mesmo dia com horários sobrepostos (início anterior ao fim do outro e fim posterior ao início do outro). |
+| RN05 | Profissionais inativos não podem receber novos agendamentos. |
+| RN06 | Um agendamento pode possuir, no máximo, um pagamento registrado. |
+| RN07 | Cada compra deve estar associada a um fornecedor. |
+| RN08 | Cada item de compra deve estar associado a uma compra e a um insumo, com quantidade maior que zero; o mesmo insumo não se repete na mesma compra. |
+| RN09 | Toda movimentação de estoque deve estar associada a um insumo, ter tipo ENTRADA ou SAIDA e quantidade maior que zero. |
+| RN10 | O fechamento de caixa deve considerar os pagamentos registrados dentro do período informado (a data final não pode ser anterior à inicial). |
+| RN11 | Todo atendimento com situação CONCLUIDO deve ter pagamento registrado; os que ainda não têm ficam como pendência para a auditoria. |
+| RN12 | O telefone do cliente é obrigatório, tem 10 ou 11 dígitos (com DDD) e é único; o e-mail, quando informado, é único e tem formato válido. |
+| RN13 | A quantidade em estoque de um insumo nunca pode ser negativa. |
+
+As regras RN01 a RN10 mantêm os códigos da Entrega 1. RN11, RN12 e RN13 foram acrescentadas durante a revisão do modelo para atender às necessidades de integridade dos dados.
 
 ---
 
