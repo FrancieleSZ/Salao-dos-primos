@@ -30,12 +30,12 @@ Hoje o salão trabalha com caderno e WhatsApp. O banco substitui esse controle m
 **Nome:** Salão dos Primos
 **Natureza:** Organização real do ramo de prestação de serviços de beleza (continuidade da organização da Entrega 1).
 **Responsável:** Alaide Souza Lacerda — cabeleireira — 11 94400-0738.
-**Vínculo do grupo com a organização:** ⚠️ PREENCHER antes de entregar: declarar se algum integrante trabalha ou tem parentesco com o salão (ou "nenhum integrante tem vínculo com o salão").
+**Vínculo do grupo com a organização:**  Tia de uma das alunas do grupo, a Franciele Souza.
 
 **Porte:**
 
 - 4 profissionais.
-- 30 a 50 clientes atendidos, segundo estimativa da responsável. ⚠️ PREENCHER o período dessa estimativa e o número de atendimentos por semana, confirmados com a Alaide (ex.: "X atendimentos por semana").
+- 30 a 50 clientes atendidos, segundo estimativa da responsável. Cerca de 30 atendimentos por semana.
 - 1 unidade, com agendamento feito em caderno e WhatsApp e sem sistema informatizado.
 
 ### Problemas e necessidades identificados
@@ -46,7 +46,7 @@ Todos os problemas abaixo são resolvidos pelo modelo; a ligação com as tabela
 - **P2 — Sem histórico organizado:** não há registro por cliente, profissional ou procedimento; os contatos ficam espalhados entre caderno e WhatsApp.
 - **P3 — Cancelamentos e remarcações sem registro:** são combinados pelo WhatsApp, então não dá para medir a taxa de cancelamento.
 - **P4 — Valores e recebimentos sem controle:** o preço é definido depois da avaliação e o valor realmente cobrado não fica registrado; não há total recebido por período.
-- **P5 — Insumos e compras sem controle:** não há registro de compras por fornecedor, estoque de insumos nem alerta de reposição. ⚠️ Confirmar com a responsável em nova visita (ver `levantamento/levantamento.md`, seção 9).
+- **P5 — Insumos e compras sem controle:** não há registro de compras por fornecedor, estoque de insumos nem alerta de reposição.
 
 ### Escopo do sistema
 
@@ -224,8 +224,6 @@ O DER conceitual representa as entidades, seus atributos e os relacionamentos, n
 | Fornecedor ausente ou sem explicação      | Incluídos `Fornecedor`, `Compra` e `Item_Compra`, com explicação do papel de cada um                  | Sem eles não há como saber de quem e quanto se comprou.                                        |
 | Estoque ausente                           | Incluídos `Insumo` e `Movimentacao_Estoque`                                                           | Permite listar insumos abaixo do mínimo (P5).                                                  |
 | Escopo, processos, requisitos e regras superficiais | Todos detalhados com os campos de cada tabela; criadas RN11 a RN13                          | O nível de detalhe precisa citar todos os campos do trabalho.                                  |
-
-⚠️ Antes de entregar, conferir esta tabela com a issue de correção do professor: todo apontamento citado lá precisa ter uma linha aqui, senão conta como não corrigido.
 
 * * *
 
@@ -535,10 +533,8 @@ O grupo usou IA como apoio ao projeto. Este registro mostra a ferramenta, a etap
 
 | Ferramenta | Resposta recebida (resumo) | Fontes verificadas | O que foi rejeitado ou corrigido, e por quê |
 |------------|----------------------------|--------------------|---------------------------------------------|
-| ChatGPT (modelagem) | ⚠️ PREENCHER: resumo da resposta | ⚠️ PREENCHER (ex.: slides do professor, material da disciplina) | ⚠️ PREENCHER |
-| ChatGPT (SQL)       | ⚠️ PREENCHER: resumo da resposta | ⚠️ PREENCHER | ⚠️ PREENCHER |
-| Claude (Entrega 2)  | Lista de divergências entre o repositório e as exigências do professor; versões novas do README, do script SQL, da massa de dados, do dicionário de dados e do levantamento. | Slides da Entrega 2 do professor; repositório do grupo. | ⚠️ PREENCHER após a conferência do grupo (ex.: decisão de não coletar CPF, regras RN11 a RN13 mantidas ou removidas, ajustes nos valores e datas da massa). |
-| IA (pesquisa)       | ⚠️ PREENCHER: processos típicos listados | ⚠️ PREENCHER | ⚠️ PREENCHER: o que não foi confirmado com a responsável |
+| ChatGPT (modelagem) | DERs com divergência | Os DERs estavam faltando informações e o auxílio da IA foi pedido mas tudo foi feito a mão |
+| Claude (Entrega 2)  | Lista de divergências entre o repositório e as exigências do professor; versões novas do README, do script SQL, da massa de dados, do dicionário de dados e do levantamento. | Slides da Entrega 2 do professor; repositório do grupo. | Foi feito para analisar oque estava faltando e ser arrumando |
 
 ### Reflexão crítica
 
@@ -548,7 +544,7 @@ Limites e riscos que o grupo identificou:
 
 - A IA não esteve no salão: processos como estoque, compras e fechamento de caixa vêm da pesquisa sobre salões típicos e precisam ser confirmados com a Alaide (P5).
 - A IA pode inventar regras ou campos que não existem no salão. Por isso o grupo decidiu, por exemplo, não coletar CPF e marcou no levantamento o que ainda precisa de confirmação.
-- O script e a massa de dados foram escritos com apoio de IA e só valem depois de executados no MySQL Workbench; os valores, datas e contagens da massa foram conferidos pelo grupo. ⚠️ Confirmar que isso foi feito antes de entregar.
+- O script e a massa de dados foram escritos com apoio de IA e só valem depois de executados no MySQL Workbench; os valores, datas e contagens da massa foram conferidos pelo grupo.
 - Os diagramas do brModelo não são gerados pela IA: foram desenhados pelo grupo a partir da tabela de atributos e cardinalidades da seção 1.1.
 
 * * *
@@ -579,4 +575,4 @@ O projeto aplica modelagem de dados, normalização, integridade referencial e S
 
 * * *
 
-Projeto acadêmico — Entrega 2 | Ciência da Computação | UNICID (Universidade Cidade de São Paulo) | 2º semestre/2026
+Projeto acadêmico — Entrega 2 | Ciência da Computação, ADS | UNICID (Universidade Cidade de São Paulo) | 2º semestre/2026
