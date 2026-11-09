@@ -72,7 +72,8 @@ O Salão dos Primos foi escolhido por ser uma organização real, com atividades
 - Endereço: R. Bernardino Vergueiro, 276 - Jardim Jaú (Zona Leste), São Paulo - SP, 03710-060.
 - Google Maps / Perfil da organização: [inserir link].
 - Contato: 11 94696-7621.
-- Fotografias da organização e da visita: ![Fotos Visitas](./evidencias/Imagem2.jpeg)
+- Fotografias da organização e da visita: ![Fotos Visitas](./evidencias/Imagem1.jpeg)
+  ![Fotos Visitas](./evidencias/Imagem2.jpeg)
 
 **Responsável pela organização:** Alaide Souza Lacerda - 11 94400-0738.
 
