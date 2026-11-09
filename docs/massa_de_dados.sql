@@ -1,177 +1,257 @@
--- =========================================================
--- Massa de dados fictícia - Salão de Beleza
--- Execute DEPOIS do script.sql (criação das tabelas)
--- =========================================================
 
-USE salao_beleza;
+-- =====================================================================
+-- SALÃO DOS PRIMOS — Massa de dados fictícia
+-- Entrega 2 · Modelagem de Banco de Dados · UNICID · 2026-2
+--
+-- ATENÇÃO:
+-- 1. Execute primeiro docs/script.sql para criar o banco e as tabelas.
+-- 2. Este arquivo insere os dados fictícios no banco criado.
+-- 3. NÃO execute se já tiver inserido a massa pela seção 4 do script.sql.
+-- 4. Os dados seguem as tabelas, colunas e restrições do script.sql.
+-- =====================================================================
+
+USE salao_dos_primos;
 SET NAMES utf8mb4;
 
--- ---------------------------------------------------------
--- Cliente
--- ---------------------------------------------------------
-INSERT INTO Cliente (id_cliente, nome, telefone, email) VALUES
-(1,  'Mariana Souza',      '(11) 98811-2233', 'mariana.souza@email.com'),
-(2,  'Carlos Eduardo Lima','(11) 97722-3344', 'carlos.lima@email.com'),
-(3,  'Fernanda Oliveira',  '(11) 96633-4455', 'fernanda.oliveira@email.com'),
-(4,  'Aline Rodrigues',    '(11) 95544-5566', 'aline.rodrigues@email.com'),
-(5,  'Beatriz Santos',     '(11) 94455-6677', 'beatriz.santos@email.com'),
-(6,  'Larissa Almeida',    '(11) 93366-7788', 'larissa.almeida@email.com'),
-(7,  'Gustavo Ferreira',   '(11) 92277-8899', NULL),
-(8,  'Renata Costa',       '(11) 91188-9900', 'renata.costa@email.com'),
-(9,  'Thais Barbosa',      '(11) 98899-0011', 'thais.barbosa@email.com'),
-(10, 'Paulo Henrique Dias','(11) 97700-1122', NULL);
+-- =====================================================================
+-- CLIENTES (18 registros)
+-- =====================================================================
 
--- ---------------------------------------------------------
--- Profissional
--- ---------------------------------------------------------
-INSERT INTO Profissional (id_profissional, nome, telefone, ativo) VALUES
-(1, 'Camila Duarte',   '(11) 99100-0001', TRUE),
-(2, 'Rafael Moreira',  '(11) 99100-0002', TRUE),
-(3, 'Juliana Pires',   '(11) 99100-0003', TRUE),
-(4, 'Patrícia Lima',   '(11) 99100-0004', TRUE),
-(5, 'Bruno Tavares',   '(11) 99100-0005', FALSE);
+INSERT INTO Cliente
+(nome_completo, telefone, email, data_cadastro, observacoes)
+VALUES
+('Ana Beatriz Moreira', '11980010001', 'ana.moreira@email.com', '2026-09-10', NULL),
+('Bianca Ferreira Lima', '11980010002', NULL, '2026-09-10', 'Prefere atendimento no período da manhã'),
+('Camila Rocha Santos', '11980010003', 'camila.rocha@email.com', '2026-09-12', NULL),
+('Daniela Souza Prado', '11980010004', NULL, '2026-09-15', NULL),
+('Eduarda Martins Costa', '11980010005', 'eduarda.costa@email.com', '2026-09-15', 'Cabelo com química'),
+('Fernanda Oliveira Dias', '11980010006', NULL, '2026-09-18', NULL),
+('Gabriela Pires Ramos', '11980010007', 'gabi.ramos@email.com', '2026-09-20', NULL),
+('Helena Barbosa Cruz', '11980010008', NULL, '2026-09-22', NULL),
+('Isabela Nogueira Melo', '11980010009', 'isa.melo@email.com', '2026-09-25', NULL),
+('Juliana Castro Faria', '11980010010', NULL, '2026-09-25', NULL),
+('Karen Duarte Viana', '11980010011', 'karen.viana@email.com', '2026-09-28', NULL),
+('Larissa Mendes Rios', '11980010012', NULL, '2026-09-30', NULL),
+('Marcos Vinicius Andrade', '11980010013', NULL, '2026-10-01', NULL),
+('Nelson Batista Ribeiro', '11980010014', 'nelson.ribeiro@email.com', '2026-10-01', NULL),
+('Otavio Campos Braga', '11980010015', NULL, '2026-10-02', NULL),
+('Patricia Gomes Tavares', '11980010016', 'paty.tavares@email.com', '2026-10-02', NULL),
+('Joana P. Duarte', '11980010017', NULL, '2026-10-20', 'Cadastro duplicado'),
+('Rafaela Teixeira Lopes', '11980010018', 'rafa.lopes@email.com', '2026-10-30', 'Cadastrada, ainda sem atendimento');
 
--- ---------------------------------------------------------
--- Especialidade
--- ---------------------------------------------------------
-INSERT INTO Especialidade (id_especialidade, nome) VALUES
-(1, 'Corte'),
-(2, 'Coloração'),
-(3, 'Tratamentos capilares'),
-(4, 'Unhas'),
-(5, 'Estética facial');
+-- =====================================================================
+-- PROFISSIONAIS (4 registros)
+-- =====================================================================
 
--- ---------------------------------------------------------
--- Profissional_Especialidade
--- ---------------------------------------------------------
-INSERT INTO Profissional_Especialidade (id_profissional, id_especialidade) VALUES
-(1, 1), (1, 2), (1, 3),
-(2, 1),
-(3, 4),
-(4, 5),
-(5, 1), (5, 2);
+INSERT INTO Profissional
+(nome_completo, telefone, data_admissao, ativo)
+VALUES
+('Marcia Lopes Andrade', '11970020001', '2022-02-01', TRUE),
+('Renata Alves Pereira', '11970020002', '2023-05-15', TRUE),
+('Carla Nunes Figueira', '11970020003', '2023-08-01', TRUE),
+('Bruno Teixeira Mota', '11970020004', '2024-03-01', TRUE);
 
--- ---------------------------------------------------------
--- Procedimento
--- ---------------------------------------------------------
-INSERT INTO Procedimento (id_procedimento, nome, descricao, duracao_estimada, preco_referencia) VALUES
-(1, 'Corte feminino',        'Corte com lavagem e finalização',          60,  80.00),
-(2, 'Corte masculino',       'Corte na tesoura ou máquina',              30,  45.00),
-(3, 'Escova',                'Escova modelada com lavagem',              45,  60.00),
-(4, 'Coloração',             'Coloração completa com tintura',          120, 180.00),
-(5, 'Hidratação',            'Hidratação profunda com máscara',          60,  90.00),
-(6, 'Manicure',              'Corte, lixa e esmaltação das mãos',        45,  35.00),
-(7, 'Pedicure',              'Cuidado completo e esmaltação dos pés',    45,  40.00),
-(8, 'Design de sobrancelha', 'Design com pinça e acabamento',            30,  30.00);
+-- =====================================================================
+-- ESPECIALIDADES
+-- =====================================================================
 
--- ---------------------------------------------------------
--- Fornecedor
--- ---------------------------------------------------------
-INSERT INTO Fornecedor (id_fornecedor, nome) VALUES
-(1, 'Beleza Pro Distribuidora'),
-(2, 'Cosméticos Brasil Ltda'),
-(3, 'Nail Center Atacado');
+INSERT INTO Especialidade (nome, descricao)
+VALUES
+('Corte', 'Cortes femininos e masculinos'),
+('Coloração', 'Coloração, mechas e retoques'),
+('Manicure e Pedicure', 'Cuidados com as unhas das mãos e dos pés'),
+('Escova e Penteados', 'Escovas, penteados e finalização'),
+('Tratamentos Capilares', 'Hidratação, reconstrução e cronograma capilar'),
+('Maquiagem', 'Maquiagem social e para eventos');
 
--- ---------------------------------------------------------
--- Insumo
--- ---------------------------------------------------------
-INSERT INTO Insumo (id_insumo, nome, quantidade_estoque, estoque_minimo) VALUES
-(1, 'Shampoo profissional 5L',   8,  3),
-(2, 'Condicionador 5L',          6,  3),
-(3, 'Tintura castanho médio',   20, 10),
-(4, 'Oxidante 20 volumes',      12,  5),
-(5, 'Máscara de hidratação',     7,  3),
-(6, 'Esmalte (unidade)',        40, 15),
-(7, 'Acetona 1L',                5,  2),
-(8, 'Cera depilatória',          4,  2);
+-- =====================================================================
+-- PROFISSIONAL_ESPECIALIDADE
+-- =====================================================================
 
--- ---------------------------------------------------------
--- Compra
--- ---------------------------------------------------------
-INSERT INTO Compra (id_compra, id_fornecedor, data_compra) VALUES
-(1, 1, '2026-10-01'),
-(2, 2, '2026-10-02'),
-(3, 3, '2026-10-08'),
-(4, 1, '2026-11-02');
+INSERT INTO Profissional_Especialidade
+(id_profissional, id_especialidade)
+VALUES
+(1, 1), (1, 2), (1, 5),
+(2, 3),
+(3, 1), (3, 4), (3, 6),
+(4, 1), (4, 4);
 
--- ---------------------------------------------------------
--- Item_Compra
--- ---------------------------------------------------------
-INSERT INTO Item_Compra (id_item_compra, id_compra, id_insumo, quantidade, valor_unitario) VALUES
-(1, 1, 1,  5, 85.00),
-(2, 1, 2,  5, 78.00),
-(3, 1, 5,  4, 62.50),
-(4, 2, 3, 15, 18.90),
-(5, 2, 4, 10, 14.50),
-(6, 3, 6, 30,  6.90),
-(7, 3, 7,  3, 22.00),
-(8, 4, 8,  4, 35.00),
-(9, 4, 3, 10, 18.90);
+-- =====================================================================
+-- PROCEDIMENTOS
+-- =====================================================================
 
--- ---------------------------------------------------------
--- Agendamento
--- ---------------------------------------------------------
+INSERT INTO Procedimento
+(nome, descricao, duracao_estimada, preco_referencia)
+VALUES
+('Corte feminino', 'Corte com lavagem e finalização', 60, 80.00),
+('Corte masculino', 'Corte simples ou com máquina', 40, 45.00),
+('Escova', 'Escova modeladora', 50, 60.00),
+('Coloração', 'Coloração completa ou retoque de raiz', 150, 180.00),
+('Mechas', 'Mechas, luzes ou platinado', 240, 320.00),
+('Hidratação', 'Hidratação ou reconstrução capilar', 60, 90.00),
+('Manicure', 'Cuidado e esmaltação das mãos', 45, 35.00),
+('Pedicure', 'Cuidado e esmaltação dos pés', 60, 40.00),
+('Maquiagem', 'Maquiagem social', 60, 100.00);
+
+-- =====================================================================
+-- AGENDAMENTOS (33 registros)
+-- =====================================================================
+
 INSERT INTO Agendamento
-(id_agendamento, id_cliente, id_profissional, id_procedimento, data, hora_inicio, hora_fim, situacao, observacoes) VALUES
-(1,  1,  1, 1, '2026-10-05', '09:00:00', '10:00:00', 'CONCLUIDO', NULL),
-(2,  2,  2, 2, '2026-10-05', '10:00:00', '10:30:00', 'CONCLUIDO', 'Degradê nas laterais'),
-(3,  3,  3, 6, '2026-10-07', '14:00:00', '14:45:00', 'CONCLUIDO', 'Esmalte vermelho'),
-(4,  4,  1, 4, '2026-10-10', '13:00:00', '15:00:00', 'CONCLUIDO', 'Cobertura de fios brancos'),
-(5,  5,  4, 8, '2026-10-12', '16:00:00', '16:30:00', 'CONCLUIDO', NULL),
-(6,  6,  1, 5, '2026-10-15', '11:00:00', '12:00:00', 'CONCLUIDO', NULL),
-(7,  7,  3, 7, '2026-10-20', '15:00:00', '15:45:00', 'CANCELADO', 'Cliente avisou que não poderia comparecer'),
-(8,  8,  1, 3, '2026-10-22', '09:30:00', '10:15:00', 'CONCLUIDO', NULL),
-(9,  9,  3, 6, '2026-10-28', '10:00:00', '10:45:00', 'CONCLUIDO', NULL),
-(10, 10, 2, 2, '2026-10-30', '17:00:00', '17:30:00', 'CONCLUIDO', NULL),
-(11, 1,  1, 3, '2026-11-03', '09:00:00', '09:45:00', 'CONCLUIDO', NULL),
-(12, 2,  3, 7, '2026-11-04', '14:00:00', '14:45:00', 'CONCLUIDO', NULL),
-(13, 3,  1, 1, '2026-11-06', '10:00:00', '11:00:00', 'AGENDADO',  NULL),
-(14, 4,  1, 4, '2026-11-07', '14:00:00', '16:00:00', 'AGENDADO',  'Retoque de raiz'),
-(15, 5,  4, 8, '2026-11-10', '15:00:00', '15:30:00', 'AGENDADO',  NULL),
-(16, 6,  3, 6, '2026-11-12', '09:00:00', '09:45:00', 'AGENDADO',  NULL);
+(id_cliente, id_profissional, id_procedimento,
+ data_agendamento, hora_inicio, hora_fim, situacao, observacoes)
+VALUES
+(1, 1, 1, '2026-10-05', '09:00', '10:00', 'CONCLUIDO', NULL),
+(2, 2, 7, '2026-10-05', '09:00', '09:45', 'CONCLUIDO', NULL),
+(3, 3, 3, '2026-10-05', '10:00', '10:50', 'CONCLUIDO', NULL),
+(13, 4, 2, '2026-10-06', '14:00', '14:40', 'CONCLUIDO', NULL),
+(5, 1, 4, '2026-10-06', '09:00', '11:30', 'CONCLUIDO', 'Retoque de raiz'),
+(6, 2, 8, '2026-10-06', '13:00', '14:00', 'CONCLUIDO', NULL),
+(7, 3, 9, '2026-10-07', '15:00', '16:00', 'CONCLUIDO', 'Maquiagem para formatura'),
+(8, 1, 6, '2026-10-08', '10:00', '11:00', 'CONCLUIDO', NULL),
+(1, 2, 7, '2026-10-08', '10:00', '10:45', 'CANCELADO', 'Cliente avisou por WhatsApp'),
+(9, 3, 1, '2026-10-09', '09:00', '10:00', 'CONCLUIDO', NULL),
+(10, 4, 3, '2026-10-09', '16:00', '16:50', 'CONCLUIDO', NULL),
+(11, 1, 5, '2026-10-13', '09:00', '13:00', 'CONCLUIDO', 'Platinado'),
+(12, 2, 7, '2026-10-13', '14:00', '14:45', 'CONCLUIDO', NULL),
+(2, 2, 8, '2026-10-14', '14:00', '15:00', 'CONCLUIDO', NULL),
+(3, 3, 1, '2026-10-15', '11:00', '12:00', 'CONCLUIDO', NULL),
+(14, 4, 2, '2026-10-16', '10:00', '10:40', 'CANCELADO', 'Cliente não compareceu'),
+(4, 1, 1, '2026-10-20', '09:00', '10:00', 'CONCLUIDO', NULL),
+(16, 3, 3, '2026-10-20', '13:00', '13:50', 'CONCLUIDO', NULL),
+(15, 4, 2, '2026-10-20', '15:00', '15:40', 'CONCLUIDO', NULL),
+(6, 2, 7, '2026-10-22', '09:00', '09:45', 'CONCLUIDO', NULL),
+(9, 1, 6, '2026-10-22', '11:00', '12:00', 'CONCLUIDO', NULL),
+(7, 3, 9, '2026-10-24', '10:00', '11:00', 'CONCLUIDO', NULL),
+(16, 1, 4, '2026-10-27', '09:00', '11:30', 'CONCLUIDO', NULL),
+(8, 2, 8, '2026-10-27', '14:00', '15:00', 'CANCELADO', 'Remarcou para outra semana'),
+(9, 3, 1, '2026-10-29', '15:00', '16:00', 'CONCLUIDO', NULL),
+(10, 1, 1, '2026-11-03', '09:00', '10:00', 'CONCLUIDO', NULL),
+(12, 2, 7, '2026-11-03', '10:00', '10:45', 'CONCLUIDO', NULL),
+(11, 3, 3, '2026-11-05', '14:00', '14:50', 'CONCLUIDO', 'Pagamento ainda não registrado'),
+(1, 1, 6, '2026-11-09', '10:00', '11:00', 'AGENDADO', NULL),
+(2, 2, 7, '2026-11-09', '10:00', '10:45', 'AGENDADO', NULL),
+(13, 3, 1, '2026-11-10', '09:00', '10:00', 'AGENDADO', NULL),
+(14, 1, 5, '2026-11-11', '09:00', '13:00', 'AGENDADO', NULL),
+(3, 2, 8, '2026-11-12', '15:00', '16:00', 'AGENDADO', NULL);
 
--- ---------------------------------------------------------
--- Pagamento (somente agendamentos concluídos)
--- ---------------------------------------------------------
-INSERT INTO Pagamento (id_pagamento, valor_pago, data_pagamento, forma_pagamento, id_agendamento) VALUES
-(1,  80.00,  '2026-10-05', 'PIX',             1),
-(2,  45.00,  '2026-10-05', 'Dinheiro',        2),
-(3,  35.00,  '2026-10-07', 'Cartão de débito', 3),
-(4,  180.00, '2026-10-10', 'Cartão de crédito', 4),
-(5,  30.00,  '2026-10-12', 'PIX',             5),
-(6,  90.00,  '2026-10-15', 'Cartão de crédito', 6),
-(7,  60.00,  '2026-10-22', 'Dinheiro',        8),
-(8,  35.00,  '2026-10-28', 'PIX',             9),
-(9,  45.00,  '2026-10-30', 'Cartão de débito', 10),
-(10, 60.00,  '2026-11-03', 'PIX',             11),
-(11, 40.00,  '2026-11-04', 'Dinheiro',        12);
+-- =====================================================================
+-- PAGAMENTOS (24 registros)
+-- =====================================================================
 
--- ---------------------------------------------------------
--- Movimentacao_Estoque
--- (entradas vinculadas às compras; saídas vinculadas a agendamentos)
--- ---------------------------------------------------------
+INSERT INTO Pagamento
+(id_agendamento, valor_pago, data_pagamento, forma_pagamento)
+VALUES
+(1, 85.00, '2026-10-05', 'PIX'),
+(2, 35.00, '2026-10-05', 'DINHEIRO'),
+(3, 60.00, '2026-10-05', 'CARTAO_DEBITO'),
+(4, 45.00, '2026-10-06', 'PIX'),
+(5, 200.00, '2026-10-06', 'CARTAO_CREDITO'),
+(6, 40.00, '2026-10-06', 'DINHEIRO'),
+(7, 110.00, '2026-10-07', 'PIX'),
+(8, 100.00, '2026-10-08', 'CARTAO_CREDITO'),
+(10, 80.00, '2026-10-09', 'DINHEIRO'),
+(11, 60.00, '2026-10-09', 'PIX'),
+(12, 380.00, '2026-10-13', 'CARTAO_CREDITO'),
+(13, 35.00, '2026-10-13', 'PIX'),
+(14, 40.00, '2026-10-14', 'DINHEIRO'),
+(15, 90.00, '2026-10-15', 'PIX'),
+(17, 80.00, '2026-10-20', 'CARTAO_DEBITO'),
+(18, 65.00, '2026-10-20', 'PIX'),
+(19, 45.00, '2026-10-20', 'DINHEIRO'),
+(20, 35.00, '2026-10-22', 'PIX'),
+(21, 95.00, '2026-10-22', 'CARTAO_CREDITO'),
+(22, 110.00, '2026-10-24', 'PIX'),
+(23, 210.00, '2026-10-27', 'CARTAO_CREDITO'),
+(25, 80.00, '2026-10-29', 'DINHEIRO'),
+(26, 80.00, '2026-11-03', 'PIX'),
+(27, 35.00, '2026-11-03', 'DINHEIRO');
+
+-- =====================================================================
+-- FORNECEDORES
+-- =====================================================================
+
+INSERT INTO Fornecedor (nome, telefone)
+VALUES
+('Beleza Pro Distribuidora', '1133334444'),
+('Cosméticos Brasil Ltda', '1144445555'),
+('Nail Center Atacado', '1155556666');
+
+-- =====================================================================
+-- COMPRAS
+-- =====================================================================
+
+INSERT INTO Compra (id_fornecedor, data_compra)
+VALUES
+(1, '2026-10-01'),
+(2, '2026-10-02'),
+(3, '2026-10-08'),
+(1, '2026-11-02');
+
+-- =====================================================================
+-- INSUMOS
+-- =====================================================================
+
+INSERT INTO Insumo
+(nome, unidade_medida, quantidade_estoque, estoque_minimo)
+VALUES
+('Shampoo profissional 5L', 'un', 8, 3),
+('Condicionador 5L', 'un', 6, 3),
+('Tintura castanho médio', 'un', 20, 10),
+('Oxidante 20 volumes', 'un', 12, 5),
+('Máscara de hidratação', 'un', 7, 3),
+('Esmalte (unidade)', 'un', 40, 15),
+('Acetona 1L', 'un', 5, 2),
+('Cera depilatória', 'un', 4, 2);
+
+-- =====================================================================
+-- ITENS DE COMPRA
+-- =====================================================================
+
+INSERT INTO Item_Compra
+(id_compra, id_insumo, quantidade, valor_unitario)
+VALUES
+(1, 1, 5, 85.00),
+(1, 2, 5, 78.00),
+(1, 5, 4, 62.50),
+(2, 3, 15, 18.90),
+(2, 4, 10, 14.50),
+(3, 6, 30, 6.90),
+(3, 7, 3, 22.00),
+(4, 8, 4, 35.00),
+(4, 3, 10, 18.90);
+
+-- =====================================================================
+-- MOVIMENTAÇÕES DE ESTOQUE
+-- =====================================================================
+
 INSERT INTO Movimentacao_Estoque
-(id_movimentacao, id_insumo, id_agendamento, tipo_movimentacao, quantidade, data_movimentacao) VALUES
-(1,  1, NULL, 'ENTRADA',  5, '2026-10-01'),
-(2,  2, NULL, 'ENTRADA',  5, '2026-10-01'),
-(3,  5, NULL, 'ENTRADA',  4, '2026-10-01'),
-(4,  3, NULL, 'ENTRADA', 15, '2026-10-02'),
-(5,  4, NULL, 'ENTRADA', 10, '2026-10-02'),
-(6,  6, NULL, 'ENTRADA', 30, '2026-10-08'),
-(7,  7, NULL, 'ENTRADA',  3, '2026-10-08'),
-(8,  1, 1,    'SAIDA',    1, '2026-10-05'),
-(9,  6, 3,    'SAIDA',    1, '2026-10-07'),
-(10, 3, 4,    'SAIDA',    2, '2026-10-10'),
-(11, 4, 4,    'SAIDA',    2, '2026-10-10'),
-(12, 8, 5,    'SAIDA',    1, '2026-10-12'),
-(13, 5, 6,    'SAIDA',    1, '2026-10-15'),
-(14, 6, 9,    'SAIDA',    1, '2026-10-28'),
-(15, 8, NULL, 'ENTRADA',  4, '2026-11-02'),
-(16, 3, NULL, 'ENTRADA', 10, '2026-11-02');
+(id_insumo, id_agendamento, tipo_movimentacao,
+ quantidade, data_movimentacao)
+VALUES
+(1, NULL, 'ENTRADA', 5, '2026-10-01'),
+(2, NULL, 'ENTRADA', 5, '2026-10-01'),
+(5, NULL, 'ENTRADA', 4, '2026-10-01'),
+(3, NULL, 'ENTRADA', 15, '2026-10-02'),
+(4, NULL, 'ENTRADA', 10, '2026-10-02'),
+(6, NULL, 'ENTRADA', 30, '2026-10-08'),
+(7, NULL, 'ENTRADA', 3, '2026-10-08'),
+(1, 1, 'SAIDA', 1, '2026-10-05'),
+(6, 3, 'SAIDA', 1, '2026-10-07'),
+(3, 5, 'SAIDA', 2, '2026-10-06'),
+(4, 5, 'SAIDA', 2, '2026-10-06'),
+(8, 7, 'SAIDA', 1, '2026-10-07'),
+(5, 6, 'SAIDA', 1, '2026-10-06'),
+(6, 9, 'SAIDA', 1, '2026-10-28'),
+(8, NULL, 'ENTRADA', 4, '2026-11-02'),
+(3, NULL, 'ENTRADA', 10, '2026-11-02');
 
--- ---------------------------------------------------------
--- Fechamento_Caixa
--- ---------------------------------------------------------
-INSERT INTO Fechamento_Caixa (id_fechamento, data_inicio, data_fim, total_recebido) VALUES
-(1, '2026-10-01', '2026-10-31', 600.00),   -- soma dos pagamentos 1 a 9
-(2, '2026-11-01', '2026-11-05', 100.00);   -- soma dos pagamentos 10 e 11
+-- =====================================================================
+-- FECHAMENTO DE CAIXA
+-- =====================================================================
+
+INSERT INTO Fechamento_Caixa
+(data_inicio, data_fim, total_recebido)
+VALUES
+('2026-10-01', '2026-10-31', 600.00),
+('2026-11-01', '2026-11-05', 100.00);
