@@ -766,14 +766,16 @@ SELECT DATE_FORMAT(data_agendamento, '%Y-%m')                         AS mes,
  GROUP BY DATE_FORMAT(data_agendamento, '%Y-%m')
  ORDER BY mes;
 
--- G04 — Quais procedimentos são mais realizados?
--- Atende: P2 · KPI K4 (procedimentos mais realizados)
-SELECT pr.nome AS procedimento, COUNT(*) AS vezes_realizado
+-- G04 — Quais procedimentos foram mais realizados em cada mês?
+-- Atende: P2 · KPI K4 (procedimentos mais realizados por mês)
+SELECT DATE_FORMAT(a.data_agendamento, '%Y-%m') AS mes,
+       pr.nome AS procedimento,
+       COUNT(*) AS vezes_realizado
   FROM Agendamento a
   JOIN Procedimento pr ON pr.id_procedimento = a.id_procedimento
  WHERE a.situacao = 'CONCLUIDO'
- GROUP BY pr.id_procedimento, pr.nome
- ORDER BY vezes_realizado DESC, pr.nome;
+ GROUP BY DATE_FORMAT(a.data_agendamento, '%Y-%m'), pr.id_procedimento, pr.nome
+ ORDER BY mes, vezes_realizado DESC, pr.nome;
 
 -- G05 — Quanto o salão recebeu por semana e qual o ticket médio?
 -- Atende: P4 · KPI K5 (faturamento semanal = soma dos pagamentos; ticket médio = total ÷ nº de pagamentos)
@@ -785,12 +787,15 @@ SELECT YEARWEEK(data_pagamento, 1) AS semana,
  GROUP BY YEARWEEK(data_pagamento, 1)
  ORDER BY semana;
 
--- G06 — Quanto foi recebido em cada forma de pagamento?
--- Atende: P4 · KPI K5 (composição do faturamento)
-SELECT forma_pagamento, COUNT(*) AS pagamentos, SUM(valor_pago) AS total_recebido
+-- G06 — Quanto foi recebido por forma de pagamento em cada semana?
+-- Atende: P4 · KPI K5 (composição semanal do faturamento)
+SELECT YEARWEEK(data_pagamento, 1) AS semana,
+       forma_pagamento,
+       COUNT(*) AS pagamentos,
+       SUM(valor_pago) AS total_recebido
   FROM Pagamento
- GROUP BY forma_pagamento
- ORDER BY total_recebido DESC;
+ GROUP BY YEARWEEK(data_pagamento, 1), forma_pagamento
+ ORDER BY semana, total_recebido DESC;
 
 -- G07 — Quais insumos estão abaixo do estoque mínimo?
 -- Atende: P5 · KPI K6 (insumos abaixo do mínimo)
@@ -800,16 +805,17 @@ SELECT nome AS insumo, quantidade_estoque, estoque_minimo,
  WHERE quantidade_estoque < estoque_minimo
  ORDER BY falta_para_o_minimo DESC;
 
--- G08 — Quanto foi gasto em compras com cada fornecedor?
--- Atende: P5 · KPI K7 (gasto por fornecedor = soma de quantidade × valor unitário)
-SELECT f.nome AS fornecedor,
-       COUNT(DISTINCT c.id_compra)          AS compras,
+-- G08 — Quanto foi gasto com cada fornecedor por mês?
+-- Atende: P5 · KPI K7 (gasto mensal por fornecedor = soma de quantidade × valor unitário)
+SELECT DATE_FORMAT(c.data_compra, '%Y-%m') AS mes,
+       f.nome AS fornecedor,
+       COUNT(DISTINCT c.id_compra) AS compras,
        COALESCE(SUM(ic.quantidade * ic.valor_unitario), 0) AS total_gasto
   FROM Fornecedor f
-  LEFT JOIN Compra      c  ON c.id_fornecedor = f.id_fornecedor
-  LEFT JOIN Item_Compra ic ON ic.id_compra    = c.id_compra
- GROUP BY f.id_fornecedor, f.nome
- ORDER BY total_gasto DESC;
+  LEFT JOIN Compra c ON c.id_fornecedor = f.id_fornecedor
+  LEFT JOIN Item_Compra ic ON ic.id_compra = c.id_compra
+ GROUP BY DATE_FORMAT(c.data_compra, '%Y-%m'), f.id_fornecedor, f.nome
+ ORDER BY mes, total_gasto DESC, f.nome;
 
 -- G09 — Quais são os agendamentos futuros de cada profissional?
 -- Atende: P1 · RF08 (agenda dos profissionais)
@@ -853,16 +859,18 @@ SELECT 'RN05 - agendamento ativo de profissional inativo' AS verificacao, COUNT(
   JOIN Profissional p ON p.id_profissional = a.id_profissional
  WHERE p.ativo = FALSE AND a.situacao = 'AGENDADO';
 
--- A03 — Quais atendimentos concluídos ainda não têm pagamento registrado?
+-- A03 — Quais atendimentos concluídos ainda não têm pagamento registrado, por semana?
 -- Verifica: RN11 (atendimento concluído deve ter pagamento registrado)
-SELECT a.id_agendamento, a.data_agendamento,
+SELECT YEARWEEK(a.data_agendamento, 1) AS semana,
+       COUNT(*) OVER (PARTITION BY YEARWEEK(a.data_agendamento, 1)) AS pendencias_na_semana,
+       a.id_agendamento, a.data_agendamento,
        c.nome_completo AS cliente, pr.nome AS procedimento
   FROM Agendamento a
-  JOIN Cliente      c  ON c.id_cliente       = a.id_cliente
+  JOIN Cliente c ON c.id_cliente = a.id_cliente
   JOIN Procedimento pr ON pr.id_procedimento = a.id_procedimento
   LEFT JOIN Pagamento pg ON pg.id_agendamento = a.id_agendamento
  WHERE a.situacao = 'CONCLUIDO' AND pg.id_pagamento IS NULL
- ORDER BY a.data_agendamento;
+ ORDER BY semana, a.data_agendamento;
 
 -- A04 — Existe agendamento com mais de um pagamento?
 -- Verifica: RN06 (no máximo um pagamento por agendamento)
