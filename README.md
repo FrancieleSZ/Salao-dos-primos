@@ -407,6 +407,8 @@ O modelo lógico apresenta as 13 tabelas com colunas, tipos, chaves primárias, 
 
 [![Modelo lógico relacional](docs/DER_logico.png)](docs/DER_logico.png)
 
+PS: O site BRModelo não possui decimal então foi usado ENUM no lugar de decimal e no BRModelo o lógico não deixa mexer nas cardinalidades somente o modelo conceitual.
+
 * * *
 
 # 3. Script SQL Completo
