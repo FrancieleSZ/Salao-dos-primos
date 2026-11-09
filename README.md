@@ -171,7 +171,7 @@ As regras RN01 a RN10 mantêm os códigos da Entrega 1. RN11, RN12 e RN13 são n
 
 | Item não incluído                | Por quê                                                                                       |
 |----------------------------------|-----------------------------------------------------------------------------------------------|
-| Comissão dos profissionais       | Não apareceu na entrevista; o grupo não sabe como o salão remunera cada profissional.        |
+| Comissão dos profissionais       | A entrevista informou que parte dos valores é dividida entre os profissionais, mas não detalhou critérios ou percentuais; por isso, o cálculo de comissões ficou fora do modelo. |
 | Venda de produtos ao cliente     | Não foi mencionada; o foco do salão é a prestação de serviços.                                |
 | Pacotes e programa de fidelidade | Não foram mencionados na entrevista.                                                          |
 | Lembretes automáticos            | A comunicação com a cliente é feita pelo WhatsApp, fora do banco de dados.                    |
