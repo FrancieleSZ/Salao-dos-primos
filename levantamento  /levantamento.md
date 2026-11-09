@@ -71,7 +71,7 @@ Para comprovar a existência da organização e o acesso do grupo, poderão ser 
 - Perfil da organização no Google, caso exista.
 - Registros da visita realizada pelo grupo.
 
-**Arquivos de evidência:** `evidencias/`
+**Arquivos de evidência:** [`evidencias`](evidencias).
 
 ---
 
@@ -170,7 +170,7 @@ Essas condições demonstram uma oportunidade de melhoria por meio de um sistema
 
 ### 2.6 Comprovação
 
-**Arquivos de evidência:** `evidencias/`
+**Arquivos de evidência:** [`evidencias`](evidencias).
 
 ---
 
