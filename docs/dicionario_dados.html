@@ -32,7 +32,7 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace}
 <h1>Dicionário de dados — Salão dos Primos</h1>
 <p class="sub">Entrega 2 · Modelagem de Banco de Dados · UNICID · 2026-2. Banco <code>salao_dos_primos</code> (MySQL 8.0.16 ou superior), com 13 tabelas.</p>
 <p>Cada tabela lista tipo, chave, obrigatoriedade, restrições e significado das colunas. As restrições <code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> e <code>DEFAULT</code> não aparecem no diagrama do brModelo; elas estão aqui e implementadas em <code>docs/script.sql</code>. O código RNxx indica a regra de negócio do README atendida pela coluna.</p>
-<p class="small">Chaves: <span class="k">PK</span> chave primária · <span class="k">FK</span> chave estrangeira. Regras que o CHECK não consegue verificar (RN04, RN05) são aplicadas por trigger em Agendamento.</p>
+<p class="small">Chaves: <span class="k">PK</span> chave primária · <span class="k">FK</span> chave estrangeira. As regras RN04 e RN05 são verificadas por triggers em Agendamento. As triggers de Movimentacao_Estoque atualizam o saldo pelas entradas e saídas e impedem estoque negativo (RN09 e RN13).</p>
 <nav aria-label="Tabelas">
 <a href="#Cliente">Cliente</a>
 <a href="#Profissional">Profissional</a>
