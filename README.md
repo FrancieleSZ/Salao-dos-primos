@@ -401,7 +401,7 @@ São propostas futuras: dependem de volume e qualidade de dados que o salão ain
 
 # 2. Modelo Lógico Relacional
 
-O modelo lógico apresenta as 13 tabelas com colunas, tipos, chaves primárias, chaves estrangeiras e cardinalidades. NOT NULL, UNIQUE, CHECK e DEFAULT não aparecem no brModelo; estão no [dicionário de dados](docs/dicionario_dados.html) e no script SQL.
+O modelo lógico apresenta as 13 tabelas com colunas, tipos, chaves primárias, chaves estrangeiras e cardinalidades. NOT NULL, UNIQUE, CHECK e DEFAULT não aparecem no brModelo; estão no [Visualizar Dicionário de Dados](https://francielesz.github.io/Salao-dos-primos/docs/dicionario_dados.html) e no script SQL.
 
 **Ferramenta utilizada:** brModelo.
 
