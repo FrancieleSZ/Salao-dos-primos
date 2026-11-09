@@ -513,7 +513,7 @@ Salao-dos-primos/
 - [Massa de dados](docs/massa_de_dados.sql)
 - [Levantamento](levantamento/levantamento.md)
 - [Evidências](evidencias)
-- [Apresentação final (pitch)](apresentacao/Apresentacao_Salao_dos_Primo.pdf)
+- [Apresentação final (pitch)](apresentacao/slide_salao_dos_primos_pdf)
 
 * * *
 
