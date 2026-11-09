@@ -95,7 +95,7 @@ Durante a visita, o grupo viu uma organização simples, com processos administr
 
 **Comprovação:** fotografia da entrevista no repositório, em `evidencias/`.
 
-O levantamento completo, com o que foi dito, o que foi observado e os pontos a confirmar, está em [Visualizar levantamento](levantamento/levantamento.md)
+O levantamento completo, com o que foi dito, o que foi observado e os pontos a confirmar, está em [Visualizar levantamento](https://github.com/FrancieleSZ/Salao-dos-primos/blob/main/levantamento%20%20/levantamento.md)
 
 ### Processos de negócio
 
