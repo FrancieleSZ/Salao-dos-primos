@@ -285,7 +285,7 @@ Processo proposto para registrar os insumos utilizados pelo estabelecimento e ac
 
 ### PB09 — Fechamento de caixa
 
-Processo proposto para registrar os fechamentos financeiros por período, considerando os pagamentos realizados. O levantamento identificou que o fechamento atual ocorre mensalmente e envolve a divisão dos valores entre o salão e os profissionais.
+Processo proposto para registrar os fechamentos financeiros por período, considerando os pagamentos realizados. O levantamento identificou que o fechamento atual ocorre mensalmente e envolve a divisão dos valores entre o salão e os profissionais. Como não foram levantados os critérios ou percentuais dessa divisão, o cálculo de comissões não faz parte do modelo.
 
 **Dados envolvidos:**
 
