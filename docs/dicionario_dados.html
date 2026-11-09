@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dicionário de dados — Salão dos Primos</title>
+<style>
+:root{--bg:#fbf9fa;--fg:#2a2230;--muted:#6b6275;--line:#e1dae6;--head:#efe8f3;--acc:#6b2d6e;--card:#fff;--tag:#f3eaf5}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1720;--fg:#ece6f0;--muted:#a79db0;--line:#3a3242;--head:#2b2433;--acc:#d9a3dc;--card:#221c29;--tag:#33283a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,'Times New Roman',serif}
+main{max-width:1000px;margin:0 auto;padding:32px 20px 64px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 8px;color:var(--acc)}
+h2{font-size:1.25rem;margin:40px 0 4px}
+p{margin:4px 0 12px;max-width:70ch}
+.sub{color:var(--muted)}
+nav{margin:20px 0;display:flex;flex-wrap:wrap;gap:8px}
+nav a{padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font:14px system-ui,sans-serif;background:var(--card)}
+nav a:hover,nav a:focus-visible{border-color:var(--acc);outline:none}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:720px;font:14px/1.45 system-ui,sans-serif}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--head);font-weight:600}
+tr:last-child td{border-bottom:0}
+code{font:13px ui-monospace,Menlo,Consolas,monospace}
+.k{display:inline-block;padding:1px 7px;border-radius:4px;background:var(--tag);color:var(--acc);font-weight:600;font-size:12px}
+.small{font:14px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<h1>Dicionário de dados — Salão dos Primos</h1>
+<p class="sub">Entrega 2 · Modelagem de Banco de Dados · UNICID · 2026-2. Banco <code>salao_dos_primos</code> (MySQL 8.0.16 ou superior), com 13 tabelas.</p>
+<p>Cada tabela lista tipo, chave, obrigatoriedade, restrições e significado das colunas. As restrições <code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> e <code>DEFAULT</code> não aparecem no diagrama do brModelo; elas estão aqui e implementadas em <code>docs/script.sql</code>. O código RNxx indica a regra de negócio do README atendida pela coluna.</p>
+<p class="small">Chaves: <span class="k">PK</span> chave primária · <span class="k">FK</span> chave estrangeira. Regras que o CHECK não consegue verificar (RN04, RN05) são aplicadas por trigger em Agendamento.</p>
+<nav aria-label="Tabelas">
+<a href="#Cliente">Cliente</a>
+<a href="#Profissional">Profissional</a>
+<a href="#Especialidade">Especialidade</a>
+<a href="#Profissional_Especialidade">Profissional_Especialidade</a>
+<a href="#Procedimento">Procedimento</a>
+<a href="#Agendamento">Agendamento</a>
+<a href="#Pagamento">Pagamento</a>
+<a href="#Fornecedor">Fornecedor</a>
+<a href="#Compra">Compra</a>
+<a href="#Insumo">Insumo</a>
+<a href="#Item_Compra">Item_Compra</a>
+<a href="#Movimentacao_Estoque">Movimentacao_Estoque</a>
+<a href="#Fechamento_Caixa">Fechamento_Caixa</a>
+</nav>
+<section><h2 id="Cliente">Cliente</h2><p>Pessoa atendida no salão. Atende RF01, RN12.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_cliente</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do cliente</td></tr>
+<tr><td><code>nome_completo</code></td><td><code>VARCHAR(100)</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Nome completo do cliente</td></tr>
+<tr><td><code>telefone</code></td><td><code>VARCHAR(11)</code></td><td>—</td><td>Não</td><td>NOT NULL, UNIQUE, CHECK (10 a 11 dígitos)</td><td>Telefone com DDD, somente números (usado no WhatsApp) — RN12</td></tr>
+<tr><td><code>email</code></td><td><code>VARCHAR(100)</code></td><td>—</td><td>Sim</td><td>UNIQUE, CHECK (formato de e-mail)</td><td>E-mail, quando informado — RN12</td></tr>
+<tr><td><code>data_cadastro</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>DEFAULT (CURRENT_DATE)</td><td>Data em que o cliente foi cadastrado</td></tr>
+<tr><td><code>observacoes</code></td><td><code>VARCHAR(255)</code></td><td>—</td><td>Sim</td><td>—</td><td>Anotações livres sobre o cliente</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Profissional">Profissional</h2><p>Pessoa que atende os clientes. Atende RF03, RN05.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_profissional</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do profissional</td></tr>
+<tr><td><code>nome_completo</code></td><td><code>VARCHAR(100)</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Nome completo</td></tr>
+<tr><td><code>telefone</code></td><td><code>VARCHAR(11)</code></td><td>—</td><td>Não</td><td>NOT NULL, CHECK (10 a 11 dígitos)</td><td>Telefone com DDD, somente números</td></tr>
+<tr><td><code>data_admissao</code></td><td><code>DATE</code></td><td>—</td><td>Sim</td><td>—</td><td>Data em que começou no salão</td></tr>
+<tr><td><code>ativo</code></td><td><code>BOOLEAN</code></td><td>—</td><td>Não</td><td>DEFAULT TRUE</td><td>Falso quando deixou o salão; não recebe novos agendamentos — RN05</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Especialidade">Especialidade</h2><p>Área de atuação (Corte, Coloração...).</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_especialidade</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador da especialidade</td></tr>
+<tr><td><code>nome</code></td><td><code>VARCHAR(60)</code></td><td>—</td><td>Não</td><td>NOT NULL, UNIQUE</td><td>Nome da especialidade</td></tr>
+<tr><td><code>descricao</code></td><td><code>VARCHAR(255)</code></td><td>—</td><td>Sim</td><td>—</td><td>Descrição da especialidade</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Profissional_Especialidade">Profissional_Especialidade</h2><p>Associativa N:N entre Profissional e Especialidade.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_profissional</code></td><td><code>INT</code></td><td><span class="k">PK</span> <span class="k">FK</span> </td><td>Não</td><td>FK → Profissional</td><td>Profissional</td></tr>
+<tr><td><code>id_especialidade</code></td><td><code>INT</code></td><td><span class="k">PK</span> <span class="k">FK</span> </td><td>Não</td><td>FK → Especialidade</td><td>Especialidade que ele exerce</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Procedimento">Procedimento</h2><p>Serviço oferecido. Atende RF02.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_procedimento</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do procedimento</td></tr>
+<tr><td><code>nome</code></td><td><code>VARCHAR(80)</code></td><td>—</td><td>Não</td><td>NOT NULL, UNIQUE</td><td>Nome do serviço</td></tr>
+<tr><td><code>descricao</code></td><td><code>VARCHAR(255)</code></td><td>—</td><td>Sim</td><td>—</td><td>Descrição do serviço</td></tr>
+<tr><td><code>duracao_estimada</code></td><td><code>INT</code></td><td>—</td><td>Não</td><td>NOT NULL, CHECK (&gt; 0)</td><td>Duração estimada em minutos</td></tr>
+<tr><td><code>preco_referencia</code></td><td><code>DECIMAL(10,2)</code></td><td>—</td><td>Não</td><td>NOT NULL, CHECK (&gt;= 0)</td><td>Preço de referência; o valor final é definido após avaliação e fica em Pagamento</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Agendamento">Agendamento</h2><p>Horário marcado de um cliente com um profissional para um procedimento. Atende RF04 a RF10, RN01 a RN05.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_agendamento</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do agendamento</td></tr>
+<tr><td><code>id_cliente</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Cliente</td><td>Cliente atendido — RN01</td></tr>
+<tr><td><code>id_profissional</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Profissional; trigger RN04 e RN05</td><td>Profissional responsável — RN02</td></tr>
+<tr><td><code>id_procedimento</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Procedimento</td><td>Procedimento marcado — RN03</td></tr>
+<tr><td><code>data_agendamento</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Dia do atendimento</td></tr>
+<tr><td><code>hora_inicio</code></td><td><code>TIME</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Hora de início</td></tr>
+<tr><td><code>hora_fim</code></td><td><code>TIME</code></td><td>—</td><td>Não</td><td>CHECK (hora_fim &gt; hora_inicio)</td><td>Hora de término prevista</td></tr>
+<tr><td><code>situacao</code></td><td><code>VARCHAR(10)</code></td><td>—</td><td>Não</td><td>DEFAULT &#x27;AGENDADO&#x27;, CHECK (AGENDADO, CONCLUIDO, CANCELADO)</td><td>Situação do agendamento</td></tr>
+<tr><td><code>observacoes</code></td><td><code>VARCHAR(255)</code></td><td>—</td><td>Sim</td><td>—</td><td>Anotações livres</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Pagamento">Pagamento</h2><p>Pagamento presencial de um atendimento. Atende RF11, RN06.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_pagamento</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do pagamento</td></tr>
+<tr><td><code>id_agendamento</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Agendamento, UNIQUE</td><td>Atendimento pago; no máximo um pagamento por agendamento — RN06</td></tr>
+<tr><td><code>valor_pago</code></td><td><code>DECIMAL(10,2)</code></td><td>—</td><td>Não</td><td>CHECK (&gt; 0)</td><td>Valor efetivamente cobrado</td></tr>
+<tr><td><code>data_pagamento</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Dia do pagamento</td></tr>
+<tr><td><code>forma_pagamento</code></td><td><code>VARCHAR(20)</code></td><td>—</td><td>Não</td><td>CHECK (DINHEIRO, PIX, CARTAO_DEBITO, CARTAO_CREDITO)</td><td>Forma de pagamento</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Fornecedor">Fornecedor</h2><p>Empresa que vende insumos ao salão. Atende RF12.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_fornecedor</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do fornecedor</td></tr>
+<tr><td><code>nome</code></td><td><code>VARCHAR(100)</code></td><td>—</td><td>Não</td><td>NOT NULL, UNIQUE</td><td>Nome do fornecedor</td></tr>
+<tr><td><code>telefone</code></td><td><code>VARCHAR(11)</code></td><td>—</td><td>Sim</td><td>CHECK (10 a 11 dígitos)</td><td>Telefone com DDD, somente números</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Compra">Compra</h2><p>Compra de insumos feita a um fornecedor. Atende RF12, RN07.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_compra</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador da compra</td></tr>
+<tr><td><code>id_fornecedor</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Fornecedor</td><td>Fornecedor da compra — RN07</td></tr>
+<tr><td><code>data_compra</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Data da compra</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Insumo">Insumo</h2><p>Produto consumido nos serviços (tintas, shampoos, esmaltes...). Atende RF14.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_insumo</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do insumo</td></tr>
+<tr><td><code>nome</code></td><td><code>VARCHAR(100)</code></td><td>—</td><td>Não</td><td>NOT NULL, UNIQUE</td><td>Nome do insumo</td></tr>
+<tr><td><code>unidade_medida</code></td><td><code>VARCHAR(10)</code></td><td>—</td><td>Não</td><td>DEFAULT &#x27;un&#x27;</td><td>Unidade (un, frasco, pote, pacote, rolo)</td></tr>
+<tr><td><code>quantidade_estoque</code></td><td><code>INT</code></td><td>—</td><td>Não</td><td>DEFAULT 0, CHECK (&gt;= 0)</td><td>Quantidade atual em estoque (derivada das movimentações) — RN13</td></tr>
+<tr><td><code>estoque_minimo</code></td><td><code>INT</code></td><td>—</td><td>Não</td><td>DEFAULT 0, CHECK (&gt;= 0)</td><td>Quantidade abaixo da qual é preciso repor</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Item_Compra">Item_Compra</h2><p>Linha de uma compra: insumo, quantidade e valor. Atende RF13, RN08.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_item_compra</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do item</td></tr>
+<tr><td><code>id_compra</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Compra; UNIQUE com id_insumo</td><td>Compra a que o item pertence — RN08</td></tr>
+<tr><td><code>id_insumo</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Insumo</td><td>Insumo comprado — RN08</td></tr>
+<tr><td><code>quantidade</code></td><td><code>INT</code></td><td>—</td><td>Não</td><td>CHECK (&gt; 0)</td><td>Quantidade comprada</td></tr>
+<tr><td><code>valor_unitario</code></td><td><code>DECIMAL(10,2)</code></td><td>—</td><td>Não</td><td>CHECK (&gt;= 0)</td><td>Preço pago por unidade</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Movimentacao_Estoque">Movimentacao_Estoque</h2><p>Histórico de entradas e saídas de insumos. Atende RF15, RF16, RN09.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_movimentacao</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador da movimentação</td></tr>
+<tr><td><code>id_insumo</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Não</td><td>FK → Insumo</td><td>Insumo movimentado — RN09</td></tr>
+<tr><td><code>id_agendamento</code></td><td><code>INT</code></td><td><span class="k">FK</span> </td><td>Sim</td><td>FK → Agendamento</td><td>Atendimento que consumiu o insumo (opcional)</td></tr>
+<tr><td><code>tipo_movimentacao</code></td><td><code>VARCHAR(10)</code></td><td>—</td><td>Não</td><td>CHECK (ENTRADA, SAIDA)</td><td>Entrada (compra) ou saída (consumo)</td></tr>
+<tr><td><code>quantidade</code></td><td><code>INT</code></td><td>—</td><td>Não</td><td>CHECK (&gt; 0)</td><td>Quantidade movimentada</td></tr>
+<tr><td><code>data_movimentacao</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Dia da movimentação</td></tr>
+</tbody></table></div></section>
+<section><h2 id="Fechamento_Caixa">Fechamento_Caixa</h2><p>Total recebido em um período. Atende RF17, RN10.</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
+<tr><td><code>id_fechamento</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do fechamento</td></tr>
+<tr><td><code>data_inicio</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>UNIQUE com data_fim</td><td>Primeiro dia do período</td></tr>
+<tr><td><code>data_fim</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>CHECK (data_fim &gt;= data_inicio)</td><td>Último dia do período</td></tr>
+<tr><td><code>total_recebido</code></td><td><code>DECIMAL(10,2)</code></td><td>—</td><td>Não</td><td>DEFAULT 0, CHECK (&gt;= 0)</td><td>Soma dos pagamentos do período, gravada no fechamento — RN10</td></tr>
+</tbody></table></div></section>
+</main></body></html>
