@@ -135,14 +135,18 @@ Os processos e as tabelas que os registram:
 
 ### Requisitos não funcionais
 
-| Código | Descrição                                                                                                  |
-|--------|------------------------------------------------------------------------------------------------------------|
-| RNF01  | O banco de dados deverá ser implementado utilizando MySQL 8.0.16 ou superior.                              |
-| RNF02  | O sistema deverá manter a integridade dos relacionamentos por meio de chaves primárias e estrangeiras.     |
-| RNF03  | Os dados deverão ser armazenados de maneira organizada e estruturada.                                      |
-| RNF04  | O acesso às informações deverá respeitar as permissões definidas para cada usuário.                        |
-| RNF05  | O projeto deverá considerar a proteção dos dados pessoais dos clientes, respeitando os princípios da LGPD. |
+| Código | Descrição |
+|---|---|
+| RNF01 | O banco de dados deverá ser implementado utilizando o SGBD MySQL. |
+| RNF02 | O banco deverá manter a integridade dos dados por meio de chaves primárias e estrangeiras. |
+| RNF03 | Os dados deverão ser organizados de forma a reduzir redundâncias desnecessárias. |
+| RNF04 | O sistema deverá permitir consultas consistentes às informações armazenadas. |
+| RNF05 | Os valores monetários deverão utilizar tipos numéricos adequados para evitar perda de precisão. |
+| RNF06 | O acesso às informações deverá ser restrito a pessoas autorizadas quando o banco estiver integrado a uma aplicação. |
+| RNF07 | A estrutura deverá utilizar restrições de integridade para impedir registros incompatíveis com as regras definidas. |
+| RNF08 | A estrutura deverá permitir manutenção e evolução conforme as necessidades da organização. |
 
+---
 ### Regras de negócio
 
 | Código | Regra                                                                                                                                                       |
