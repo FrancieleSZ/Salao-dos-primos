@@ -333,7 +333,7 @@ As FKs impedem referências a registros que não existem (RN01 a RN03, RN07 a RN
 
 ### Decisões gerais
 
-- **Triggers para RN04 e RN05:** o `CHECK` só enxerga a própria linha e não consegue comparar horários entre agendamentos. Por isso duas triggers em `Agendamento` (antes de inserir e antes de atualizar) bloqueiam conflito de horário e profissional inativo.
+- **Triggers de agendamento e estoque:** duas triggers em `Agendamento` (antes de inserir e antes de atualizar) bloqueiam conflitos de horário e agendamentos com profissionais inativos (RN04/RN05). Cinco triggers em `Movimentacao_Estoque` atualizam o saldo automaticamente e impedem saídas ou alterações que deixem o estoque negativo (RN09/RN13).
 - **Preço de referência × valor pago:** o preço é definido após avaliação (entrevista). Por isso `Procedimento.preco_referencia` é só uma base e o valor real fica em `Pagamento.valor_pago`.
 - **Cancelar sem apagar:** o cancelamento muda a situação do agendamento (RF06), o que mantém o histórico e permite calcular a taxa de cancelamento (P3).
 - **Estoque pelas movimentações:** toda entrada e saída é uma linha em `Movimentacao_Estoque`, o que dá histórico e permite a auditoria A06.
@@ -354,7 +354,7 @@ Cada KPI tem fórmula, período e meta proposta (a validar com a responsável).
 | K3   | Atendimentos concluídos por profissional | contagem de agendamentos CONCLUIDO por profissional         | mensal  | distribuição equilibrada    | G02      |
 | K4   | Procedimentos mais realizados          | contagem de CONCLUIDO por procedimento                        | mensal  | acompanhar o ranking        | G04      |
 | K5   | Faturamento e ticket médio             | soma de `valor_pago`; ticket médio = soma ÷ nº de pagamentos  | semanal | acompanhar a tendência      | G05, G06 |
-| K6   | Insumos abaixo do estoque mínimo       | contagem de insumos com estoque < mínimo                      | semanal | 0                           | G07      |
+| K6   | Insumos abaixo do estoque mínimo       | contagem de insumos com estoque < mínimo na posição atual     | consulta atual | 0                 | G07      |
 | K7   | Gasto com compras por fornecedor       | soma de quantidade × valor unitário por fornecedor            | mensal  | acompanhar a tendência      | G08      |
 | K8   | Atendimentos concluídos sem pagamento  | contagem de CONCLUIDO sem registro em `Pagamento`             | semanal | 0                           | A03      |
 
@@ -415,7 +415,7 @@ O banco foi implementado para **MySQL 8.0.16 ou superior**. O arquivo [`docs/scr
 
 01. Criação do banco de dados (`salao_dos_primos`);
 02. Criação das tabelas, com tipos adequados;
-03. Constraints (PK, FK, NOT NULL, UNIQUE, CHECK, DEFAULT) e triggers das regras RN04 e RN05;
+03. Constraints (PK, FK, NOT NULL, UNIQUE, CHECK, DEFAULT) e triggers de agenda (RN04/RN05) e estoque (RN09/RN13);
 04. Inserção da massa de dados;
 05. Consultas com `SELECT` e `JOIN` (S01 a S04);
 06. `UPDATE` e `DELETE` (U01 a U03, D01);
