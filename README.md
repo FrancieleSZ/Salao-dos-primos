@@ -93,7 +93,7 @@ O salão faz seus agendamentos de forma manual, principalmente em um caderno e p
 **Observações presenciais:**
 Durante a visita, o grupo viu uma organização simples, com processos administrativos feitos à mão: agendamentos anotados em caderno e complementados por conversas no WhatsApp. Não havia computadores nem sistemas de gestão em uso. A responsável concentra a organização de horários, o contato com clientes e a definição dos serviços.
 
-**Comprovação:** fotografia da entrevista no repositório, em `evidencias/`.
+**Comprovação:** fotografia da entrevista no repositório, em [Evidencias](evidencias).
 
 O levantamento completo, com o que foi dito, o que foi observado e os pontos a confirmar, está em [Visualizar levantamento](https://github.com/FrancieleSZ/Salao-dos-primos/blob/main/levantamento%20%20/levantamento.md)
 
