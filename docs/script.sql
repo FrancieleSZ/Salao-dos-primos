@@ -45,7 +45,7 @@ CREATE TABLE Profissional (
     id_profissional INT          NOT NULL AUTO_INCREMENT,
     nome_completo   VARCHAR(100) NOT NULL,
     telefone        VARCHAR(11)  NOT NULL,
-    data_admissao   DATE         NULL,
+    data_admissao   DATE         NOT NULL,
     ativo           BOOLEAN      NOT NULL DEFAULT TRUE,
     PRIMARY KEY (id_profissional)
 );
@@ -819,7 +819,7 @@ SELECT p.nome_completo AS profissional, a.data_agendamento, a.hora_inicio, a.hor
   JOIN Profissional p  ON p.id_profissional  = a.id_profissional
   JOIN Cliente      c  ON c.id_cliente       = a.id_cliente
   JOIN Procedimento pr ON pr.id_procedimento = a.id_procedimento
- WHERE a.situacao = 'AGENDADO' AND a.data_agendamento >= '2026-11-09'
+ WHERE a.situacao = 'AGENDADO' AND a.data_agendamento >= CURDATE()
  ORDER BY p.nome_completo, a.data_agendamento, a.hora_inicio;
 
 -- G10 — Quais clientes cadastrados ainda não têm nenhum atendimento?
