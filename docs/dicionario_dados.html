@@ -60,7 +60,7 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace}
 <tr><td><code>id_profissional</code></td><td><code>INT</code></td><td><span class="k">PK</span> </td><td>Não</td><td>AUTO_INCREMENT</td><td>Identificador do profissional</td></tr>
 <tr><td><code>nome_completo</code></td><td><code>VARCHAR(100)</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Nome completo</td></tr>
 <tr><td><code>telefone</code></td><td><code>VARCHAR(11)</code></td><td>—</td><td>Não</td><td>NOT NULL, CHECK (10 a 11 dígitos)</td><td>Telefone com DDD, somente números</td></tr>
-<tr><td><code>data_admissao</code></td><td><code>DATE</code></td><td>—</td><td>Sim</td><td>—</td><td>Data em que começou no salão</td></tr>
+<tr><td><code>data_admissao</code></td><td><code>DATE</code></td><td>—</td><td>Não</td><td>NOT NULL</td><td>Data em que começou no salão</td></tr>
 <tr><td><code>ativo</code></td><td><code>BOOLEAN</code></td><td>—</td><td>Não</td><td>DEFAULT TRUE</td><td>Falso quando deixou o salão; não recebe novos agendamentos — RN05</td></tr>
 </tbody></table></div></section>
 <section><h2 id="Especialidade">Especialidade</h2><p>Área de atuação (Corte, Coloração...).</p><div class="wrap"><table><thead><tr><th>Coluna</th><th>Tipo</th><th>Chave</th><th>Nulo?</th><th>Restrições</th><th>Descrição</th></tr></thead><tbody>
