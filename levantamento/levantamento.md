@@ -81,7 +81,7 @@ Para comprovar a existência da organização e o acesso do grupo, poderão ser 
 
 - **Organização:** Salão dos Primos.
 - **Entrevistada:** Alaide Souza Lacerda.
-- **Função:** Alaide.
+- **Função:** Responsável pelo estabelecimento.
 - **Data:** 20/09/2026.
 - **Local:** Salão dos Primos.
 - **Integrantes participantes:** Franciele Souza.
@@ -190,6 +190,8 @@ O processo consiste em registrar os dados dos clientes para permitir sua identif
 - Nome.
 - Telefone.
 - E-mail.
+- Data de cadastro.
+- Observações.
 
 ### PB02 — Cadastro de profissionais
 
@@ -201,6 +203,7 @@ O processo consiste em registrar os profissionais que trabalham no estabelecimen
 - Nome.
 - Telefone.
 - Situação de atividade.
+- Data de admissão.
 
 ### PB03 — Organização de especialidades
 
@@ -236,8 +239,6 @@ O processo consiste em registrar os atendimentos programados, relacionando o cli
 - Data.
 - Horário de início.
 - Horário de término.
-- Situação.
-- Observações.
 - Situação.
 - Observações.
 
