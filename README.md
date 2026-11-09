@@ -175,7 +175,7 @@ As regras RN01 a RN10 mantêm os códigos da Entrega 1. RN11, RN12 e RN13 são n
 | Venda de produtos ao cliente     | Não foi mencionada; o foco do salão é a prestação de serviços.                                |
 | Pacotes e programa de fidelidade | Não foram mencionados na entrevista.                                                          |
 | Lembretes automáticos            | A comunicação com a cliente é feita pelo WhatsApp, fora do banco de dados.                    |
-| CPF do cliente                   | Decisão do grupo de coletar o mínimo de dados pessoais (RNF05); o telefone identifica a cliente. |
+| CPF do cliente                   | Decisão do grupo de minimizar a coleta de dados pessoais; o telefone identifica a cliente. |
 | Nota fiscal                      | Fora do escopo do banco de dados da disciplina.                                               |
 
 ### DER conceitual revisado
@@ -337,7 +337,7 @@ As FKs impedem referências a registros que não existem (RN01 a RN03, RN07 a RN
 - **Preço de referência × valor pago:** o preço é definido após avaliação (entrevista). Por isso `Procedimento.preco_referencia` é só uma base e o valor real fica em `Pagamento.valor_pago`.
 - **Cancelar sem apagar:** o cancelamento muda a situação do agendamento (RF06), o que mantém o histórico e permite calcular a taxa de cancelamento (P3).
 - **Estoque pelas movimentações:** toda entrada e saída é uma linha em `Movimentacao_Estoque`, o que dá histórico e permite a auditoria A06.
-- **Sem CPF:** o telefone já identifica a cliente e o grupo preferiu guardar o mínimo de dados pessoais (RNF05).
+- **Sem CPF:** o telefone já identifica a cliente e o grupo preferiu minimizar a coleta de dados pessoais.
 
 * * *
 

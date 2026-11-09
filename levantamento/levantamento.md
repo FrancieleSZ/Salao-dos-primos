@@ -225,7 +225,7 @@ O processo consiste em registrar os procedimentos oferecidos pelo salão, inclui
 
 ### PB05 — Agendamento de atendimentos
 
-O processo consiste em registrar os atendimentos programados, relacionando o cliente, o profissional responsável e o procedimento solicitado. Também deverá permitir registrar o valor combinado após a avaliação do cliente.
+O processo consiste em registrar os atendimentos programados, relacionando o cliente, o profissional responsável e o procedimento solicitado. O valor combinado após a avaliação do cliente será registrado no processo de pagamento.
 
 **Dados envolvidos:**
 
@@ -238,7 +238,8 @@ O processo consiste em registrar os atendimentos programados, relacionando o cli
 - Horário de término.
 - Situação.
 - Observações.
-- Valor definido para o atendimento.
+- Situação.
+- Observações.
 
 ### PB06 — Registro de pagamentos
 

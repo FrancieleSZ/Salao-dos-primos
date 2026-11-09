@@ -233,6 +233,8 @@ ALTER TABLE Fechamento_Caixa
     ADD CONSTRAINT ck_fechamento_total   CHECK (total_recebido >= 0);
 
 
+DELIMITER //
+
 -- =========================================================
 -- TRIGGERS DE CONTROLE DE ESTOQUE — RN09 e RN13
 -- Atualizam o saldo automaticamente pelas movimentações.
@@ -350,8 +352,6 @@ END//
 -- Triggers — RN04 (sem conflito de horário) e RN05 (profissional inativo)
 -- O CHECK não consulta outras linhas, então essas duas regras ficam em trigger.
 -- ---------------------------------------------------------------------
-DELIMITER //
-
 CREATE TRIGGER trg_agendamento_bi
 BEFORE INSERT ON Agendamento
 FOR EACH ROW
@@ -388,9 +388,21 @@ CREATE TRIGGER trg_agendamento_bu
 BEFORE UPDATE ON Agendamento
 FOR EACH ROW
 BEGIN
+    DECLARE v_ativo BOOLEAN;
     DECLARE v_conflitos INT;
 
     IF NEW.situacao = 'AGENDADO' THEN
+        -- RN05: impede agendamento com profissional inativo
+        SELECT ativo INTO v_ativo
+          FROM Profissional
+         WHERE id_profissional = NEW.id_profissional;
+
+        IF v_ativo = FALSE THEN
+            SIGNAL SQLSTATE '45000'
+                SET MESSAGE_TEXT = 'RN05: profissional inativo nao pode receber agendamentos';
+        END IF;
+
+        -- RN04: impede conflito de horário
         SELECT COUNT(*) INTO v_conflitos
           FROM Agendamento a
          WHERE a.id_profissional   = NEW.id_profissional
@@ -880,39 +892,4 @@ SELECT i.nome AS insumo, i.quantidade_estoque,
  GROUP BY i.id_insumo, i.nome, i.quantidade_estoque
  ORDER BY i.nome;
 
-CREATE TRIGGER trg_agendamento_bu
-BEFORE UPDATE ON Agendamento
-FOR EACH ROW
-BEGIN
-    DECLARE v_ativo BOOLEAN;
-    DECLARE v_conflitos INT;
 
-    IF NEW.situacao = 'AGENDADO' THEN
-
-        -- RN05: verifica se o profissional está ativo
-        SELECT ativo INTO v_ativo
-          FROM Profissional
-         WHERE id_profissional = NEW.id_profissional;
-
-        IF v_ativo = FALSE THEN
-            SIGNAL SQLSTATE '45000'
-                SET MESSAGE_TEXT = 'RN05: profissional inativo nao pode receber agendamentos';
-        END IF;
-
-        -- RN04: verifica conflitos de horário
-        SELECT COUNT(*) INTO v_conflitos
-          FROM Agendamento a
-         WHERE a.id_profissional   = NEW.id_profissional
-           AND a.data_agendamento  = NEW.data_agendamento
-           AND a.situacao          = 'AGENDADO'
-           AND a.id_agendamento   <> NEW.id_agendamento
-           AND NEW.hora_inicio < a.hora_fim
-           AND NEW.hora_fim    > a.hora_inicio;
-
-        IF v_conflitos > 0 THEN
-            SIGNAL SQLSTATE '45000'
-                SET MESSAGE_TEXT = 'RN04: o profissional ja possui agendamento nesse horario';
-        END IF;
-
-    END IF;
-END//
