@@ -554,26 +554,6 @@ Limites e riscos que o grupo identificou:
 
 * * *
 
-# 7. Apresentação Corporativa Final
-
-A apresentação tem 8 minutos e segue a ordem definida pelo professor. A demonstração usa o banco implementado e as consultas do script.
-
-### Roteiro da apresentação
-
-| # | Parte                                                  | Tempo sugerido |
-|---|--------------------------------------------------------|----------------|
-| 1 | Problemas identificados no salão (P1 a P5)             | 1 min          |
-| 2 | Solução proposta                                       | 1 min          |
-| 3 | Modelo lógico                                          | 1 min 30 s     |
-| 4 | Demonstração do SQL rodando (tabelas, triggers, massa) | 1 min 30 s     |
-| 5 | Consultas gerenciais e de auditoria (ex.: G03, G07, A03) | 1 min 30 s   |
-| 6 | Potencial para BI e IA                                 | 1 min          |
-| 7 | Benefícios para a tomada de decisão                    | 30 s           |
-
-Na defesa, cada pergunta é respondida apenas pelo integrante a quem foi dirigida. Todos participam e estão presentes, com postura e vestimenta corporativas.
-
-* * *
-
 ## Considerações finais
 
 O projeto aplica modelagem de dados, normalização, integridade referencial e SQL a uma organização real. A estrutura organiza as informações do Salão dos Primos e cria a base para consultas gerenciais, painéis de BI e análises futuras.
