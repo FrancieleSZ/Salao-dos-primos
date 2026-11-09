@@ -430,16 +430,16 @@ Cada consulta tem um cabeçalho com a pergunta e o problema, KPI ou regra que el
 | G01      | Quantos agendamentos existem por semana?                         | P1, P2, K1   |
 | G02      | Quantos atendimentos cada profissional concluiu por mês?         | P2, K3       |
 | G03      | Qual a taxa de cancelamento por mês?                             | P3, K2       |
-| G04      | Quais procedimentos são mais realizados?                         | P2, K4       |
+| G04      | Quais procedimentos foram mais realizados em cada mês?           | P2, K4       |
 | G05      | Quanto foi recebido por semana e qual o ticket médio?            | P4, K5       |
-| G06      | Quanto foi recebido em cada forma de pagamento?                  | P4, K5       |
+| G06      | Quanto foi recebido por forma de pagamento em cada semana?       | P4, K5       |
 | G07      | Quais insumos estão abaixo do estoque mínimo?                    | P5, K6       |
-| G08      | Quanto foi gasto com cada fornecedor?                            | P5, K7       |
+| G08      | Quanto foi gasto com cada fornecedor por mês?                    | P5, K7       |
 | G09      | Quais são os agendamentos futuros de cada profissional?          | P1, RF08     |
 | G10      | Quais clientes ainda não têm atendimento?                        | P2           |
 | A01      | Existe profissional com dois agendamentos no mesmo horário?      | RN04         |
 | A02      | Existe agendamento ativo para profissional inativo?              | RN05         |
-| A03      | Quais atendimentos concluídos estão sem pagamento?               | RN11, K8     |
+| A03      | Quais atendimentos concluídos estão sem pagamento, por semana?   | RN11, K8     |
 | A04      | Existe agendamento com mais de um pagamento?                     | RN06         |
 | A05      | O total de cada fechamento bate com os pagamentos do período?    | RN10         |
 | A06      | O estoque de cada insumo bate com o saldo das movimentações?     | RN09, RN13   |
