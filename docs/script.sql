@@ -233,6 +233,119 @@ ALTER TABLE Fechamento_Caixa
     ADD CONSTRAINT ck_fechamento_total   CHECK (total_recebido >= 0);
 
 
+-- =========================================================
+-- TRIGGERS DE CONTROLE DE ESTOQUE — RN09 e RN13
+-- Atualizam o saldo automaticamente pelas movimentações.
+-- =========================================================
+
+-- Impede uma saída maior que o estoque disponível
+CREATE TRIGGER trg_estoque_bi
+BEFORE INSERT ON Movimentacao_Estoque
+FOR EACH ROW
+BEGIN
+    DECLARE v_estoque INT;
+
+    SELECT quantidade_estoque INTO v_estoque
+      FROM Insumo
+     WHERE id_insumo = NEW.id_insumo;
+
+    IF NEW.tipo_movimentacao = 'SAIDA'
+       AND NEW.quantidade > v_estoque THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Estoque insuficiente para realizar esta saida';
+    END IF;
+END//
+
+-- Atualiza o saldo após inserir uma movimentação
+CREATE TRIGGER trg_estoque_ai
+AFTER INSERT ON Movimentacao_Estoque
+FOR EACH ROW
+BEGIN
+    UPDATE Insumo
+       SET quantidade_estoque =
+           quantidade_estoque +
+           CASE
+               WHEN NEW.tipo_movimentacao = 'ENTRADA'
+               THEN NEW.quantidade
+               ELSE -NEW.quantidade
+           END
+     WHERE id_insumo = NEW.id_insumo;
+END//
+
+-- Impede alterações que deixariam o estoque negativo
+CREATE TRIGGER trg_estoque_bu
+BEFORE UPDATE ON Movimentacao_Estoque
+FOR EACH ROW
+BEGIN
+    DECLARE v_estoque INT;
+    DECLARE v_novo_saldo INT;
+
+    SELECT quantidade_estoque INTO v_estoque
+      FROM Insumo
+     WHERE id_insumo = OLD.id_insumo;
+
+    SET v_novo_saldo = v_estoque
+        + CASE
+            WHEN OLD.tipo_movimentacao = 'ENTRADA'
+            THEN -OLD.quantidade
+            ELSE OLD.quantidade
+          END
+        + CASE
+            WHEN NEW.tipo_movimentacao = 'ENTRADA'
+            THEN NEW.quantidade
+            ELSE -NEW.quantidade
+          END;
+
+    IF OLD.id_insumo <> NEW.id_insumo THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Nao altere o insumo de uma movimentacao existente';
+    END IF;
+
+    IF v_novo_saldo < 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Alteracao deixaria o estoque negativo';
+    END IF;
+END//
+
+-- Atualiza o saldo após alterar uma movimentação
+CREATE TRIGGER trg_estoque_au
+AFTER UPDATE ON Movimentacao_Estoque
+FOR EACH ROW
+BEGIN
+    UPDATE Insumo
+       SET quantidade_estoque =
+           quantidade_estoque
+           + CASE
+               WHEN OLD.tipo_movimentacao = 'ENTRADA'
+               THEN -OLD.quantidade
+               ELSE OLD.quantidade
+             END
+           + CASE
+               WHEN NEW.tipo_movimentacao = 'ENTRADA'
+               THEN NEW.quantidade
+               ELSE -NEW.quantidade
+             END
+     WHERE id_insumo = NEW.id_insumo;
+END//
+
+-- Reverte o efeito da movimentação quando ela é excluída
+CREATE TRIGGER trg_estoque_ad
+AFTER DELETE ON Movimentacao_Estoque
+FOR EACH ROW
+BEGIN
+    UPDATE Insumo
+       SET quantidade_estoque =
+           quantidade_estoque +
+           CASE
+               WHEN OLD.tipo_movimentacao = 'ENTRADA'
+               THEN -OLD.quantidade
+               ELSE OLD.quantidade
+           END
+     WHERE id_insumo = OLD.id_insumo;
+END//
+
+
+
 -- ---------------------------------------------------------------------
 -- Triggers — RN04 (sem conflito de horário) e RN05 (profissional inativo)
 -- O CHECK não consulta outras linhas, então essas duas regras ficam em trigger.
