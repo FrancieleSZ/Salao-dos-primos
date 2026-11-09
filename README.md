@@ -1,6 +1,6 @@
 # 💇‍♀️ Salão dos Primos — Sistema de Gestão
 
-> Projeto acadêmico de modelagem, implementação e documentação de banco de dados para o gerenciamento das informações do Salão dos Primos.
+> Projeto acadêmico de modelagem , implementação e documentação de banco de dados para o gerenciamento das informações do Salão dos Primos.
 
 ## 📌 Sobre o projeto
 
