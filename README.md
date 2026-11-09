@@ -6,7 +6,7 @@
 
 O projeto desenvolve um banco de dados relacional (MySQL) para organizar e centralizar as informações do Salão dos Primos: clientes, profissionais e suas especialidades, procedimentos, agendamentos, pagamentos, compras de insumos, estoque e fechamento de caixa.
 
-Hoje o salão trabalha com caderno e WhatsApp. O banco substitui esse controle manual por um registro único, que permite consultar o histórico de atendimentos, evitar conflitos de horário, acompanhar recebimentos e saber quando um insumo precisa ser reposto.
+Hoje o salão trabalha com caderno e WhatsApp. A proposta de banco de dados busca centralizar essas informações em um único registro, permitindo consultar o histórico de atendimentos, evitar conflitos de horário, acompanhar recebimentos e controlar a necessidade de reposição de insumos.
 
 * * *
 
@@ -35,12 +35,12 @@ Hoje o salão trabalha com caderno e WhatsApp. O banco substitui esse controle m
 **Porte:**
 
 - 4 profissionais.
-- 30 a 50 clientes atendidos, segundo estimativa da responsável. Cerca de 30 atendimentos por semana.
+- 30 a 50 clientes, segundo estimativa da responsável.
 - 1 unidade, com agendamento feito em caderno e WhatsApp e sem sistema informatizado.
 
 ### Problemas e necessidades identificados
 
-Todos os problemas abaixo são resolvidos pelo modelo; a ligação com as tabelas e consultas está na seção 1.6.
+O modelo proposto busca atender aos problemas identificados; a ligação com as tabelas e consultas está na seção 1.6.
 
 - **P1 — Agenda sem verificação de conflitos:** os horários ficam no caderno e no WhatsApp; nada impede dois atendimentos do mesmo profissional no mesmo horário.
 - **P2 — Sem histórico organizado:** não há registro por cliente, profissional ou procedimento; os contatos ficam espalhados entre caderno e WhatsApp.
@@ -457,7 +457,7 @@ A massa de dados é **fictícia**: nomes e telefones inventados, sem dados reais
 | Especialidade              | 6         |                                                                                    |
 | Profissional_Especialidade | 9         |                                                                                    |
 | Procedimento               | 9         | duração e preço de referência diferentes                                           |
-| Agendamento                | 33        | 25 concluídos, 3 cancelados e 5 futuros                                            |
+| Agendamento                | 33        | massa inicial: 25 concluídos, 3 cancelados e 5 futuros; após U02: 25, 4 e 4          |
 | Pagamento                  | 24        | 4 formas de pagamento; 1 atendimento concluído ainda sem pagamento                 |
 | Fornecedor                 | 4         | um ainda sem compras                                                               |
 | Compra / Item_Compra       | 5 / 17    |                                                                                    |
@@ -465,7 +465,7 @@ A massa de dados é **fictícia**: nomes e telefones inventados, sem dados reais
 | Movimentacao_Estoque       | 35        | 17 entradas (das compras) e 18 saídas (consumo)                                    |
 | Fechamento_Caixa           | 4         | períodos semanais fictícios para teste; o salão realiza fechamento mensal          |
 
-**Por que esse volume:** o salão tem 4 profissionais, então 33 agendamentos em cerca de 6 semanas (05/10 a 12/11/2026) dão uma amostra proporcional ao porte, com variedade suficiente para as consultas.
+**Por que esse volume:** os 33 agendamentos fictícios, distribuídos entre 05/10 e 12/11/2026, oferecem variedade de situações e períodos para testar as consultas. A quantidade é uma massa de teste, não uma estimativa de atendimentos semanais do salão.
 
 **Períodos de fechamento:** embora o salão realize fechamento de caixa mensalmente, os quatro fechamentos semanais desta massa são fictícios e foram incluídos exclusivamente para testar consultas e auditorias por período. Eles não representam a rotina real do estabelecimento.
 
