@@ -520,7 +520,7 @@ O grupo usou IA como apoio ao projeto. Este registro mostra a ferramenta, a etap
 | ChatGPT    | Modelagem e documentação (E1)  | Organizar os diagramas, estruturar o README e esclarecer conceitos de banco de dados.     |
 | ChatGPT    | SQL                            | Elaborar e revisar estruturas SQL e relacionamentos.                                       |
 | Claude     | Revisão e refação da Entrega 2 | Comparar o repositório com as exigências do professor e redigir README, script SQL, massa de dados, dicionário de dados e levantamento. |
-| IA (pesquisa) | Processos típicos de salões | Levantar processos, requisitos e regras comuns em salões de pequeno porte, para conferir depois com a responsável (ver `levantamento/levantamento.md`, seções 7 e 9). ⚠️ Informar a ferramenta usada. |
+| IA (pesquisa) | Processos típicos de salões | Levantar processos, requisitos e regras comuns em salões de pequeno porte, para conferir depois com a responsável. |
 
 ### Prompts utilizados
 
@@ -542,16 +542,7 @@ O grupo usou IA como apoio ao projeto. Este registro mostra a ferramenta, a etap
 | ChatGPT (modelagem) | DERs com divergência | Os DERs estavam faltando informações e o auxílio da IA foi pedido mas tudo foi feito a mão |
 | Claude (Entrega 2)  | Lista de divergências entre o repositório e as exigências do professor; versões novas do README, do script SQL, da massa de dados, do dicionário de dados e do levantamento. | Slides da Entrega 2 do professor; repositório do grupo. | Foi feito para analisar oque estava faltando e ser arrumando |
 
-### Reflexão crítica
 
-As respostas de IA não foram tratadas como corretas por padrão. O que ela escreveu precisou ser conferido contra as exigências do professor e contra o que foi visto na entrevista, e cada integrante deve conseguir explicar qualquer decisão do modelo na defesa.
-
-Limites e riscos que o grupo identificou:
-
-- A IA não esteve no salão: processos como estoque, compras e fechamento de caixa vêm da pesquisa sobre salões típicos e precisam ser confirmados com a Alaide (P5).
-- A IA pode inventar regras ou campos que não existem no salão. Por isso o grupo decidiu, por exemplo, não coletar CPF e marcou no levantamento o que ainda precisa de confirmação.
-- O script e a massa de dados foram escritos com apoio de IA e só valem depois de executados no MySQL Workbench; os valores, datas e contagens da massa foram conferidos pelo grupo.
-- Os diagramas do brModelo não são gerados pela IA: foram desenhados pelo grupo a partir da tabela de atributos e cardinalidades da seção 1.1.
 
 * * *
 
