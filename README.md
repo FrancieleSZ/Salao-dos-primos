@@ -337,7 +337,7 @@ As FKs impedem referências a registros que não existem (RN01 a RN03, RN07 a RN
 - **Preço de referência × valor pago:** o preço é definido após avaliação (entrevista). Por isso `Procedimento.preco_referencia` é só uma base e o valor real fica em `Pagamento.valor_pago`.
 - **Cancelar sem apagar:** o cancelamento muda a situação do agendamento (RF06), o que mantém o histórico e permite calcular a taxa de cancelamento (P3).
 - **Estoque pelas movimentações:** toda entrada e saída é uma linha em `Movimentacao_Estoque`, o que dá histórico e permite a auditoria A06.
-- **Sem CPF:** o telefone já identifica a cliente e o grupo preferiu minimizar a coleta de dados pessoais.
+- **Sem CPF:** o telefone já identifica os clientes e o grupo preferiu minimizar a coleta de dados pessoais.
 
 * * *
 
