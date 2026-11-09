@@ -71,7 +71,7 @@ Para comprovar a existência da organização e o acesso do grupo, poderão ser 
 - Perfil da organização no Google, caso exista.
 - Registros da visita realizada pelo grupo.
 
-**Arquivos de evidência:** [evidencias](evidencias).
+**Arquivos de evidência:** [evidencias](https://github.com/FrancieleSZ/Salao-dos-primos/tree/main/evidencias).
 
 ---
 
