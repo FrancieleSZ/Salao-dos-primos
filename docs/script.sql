@@ -359,16 +359,18 @@ BEGIN
     DECLARE v_ativo BOOLEAN;
     DECLARE v_conflitos INT;
 
-    SELECT ativo INTO v_ativo
-      FROM Profissional
-     WHERE id_profissional = NEW.id_profissional;
-
-    IF v_ativo = FALSE THEN
-        SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'RN05: profissional inativo nao pode receber novos agendamentos';
-    END IF;
-
     IF NEW.situacao = 'AGENDADO' THEN
+        -- RN05: profissional inativo não pode receber novo agendamento.
+        SELECT ativo INTO v_ativo
+          FROM Profissional
+         WHERE id_profissional = NEW.id_profissional;
+
+        IF v_ativo = FALSE THEN
+            SIGNAL SQLSTATE '45000'
+                SET MESSAGE_TEXT = 'RN05: profissional inativo nao pode receber novos agendamentos';
+        END IF;
+
+        -- RN04: impede sobreposição com outro agendamento ativo.
         SELECT COUNT(*) INTO v_conflitos
           FROM Agendamento a
          WHERE a.id_profissional   = NEW.id_profissional
