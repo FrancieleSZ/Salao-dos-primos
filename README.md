@@ -188,20 +188,21 @@ O DER conceitual representa as entidades, seus atributos e os relacionamentos, n
 
 **Atributos por entidade** (identificador em **negrito**):
 
-| Entidade                   | Atributos                                                                       |
-|----------------------------|---------------------------------------------------------------------------------|
-| Cliente                    | **id_cliente**, nome_completo, telefone, email, data_cadastro, observacoes      |
-| Profissional               | **id_profissional**, nome_completo, telefone, data_admissao, ativo              |
-| Especialidade              | **id_especialidade**, nome, descricao                                           |
-| Procedimento               | **id_procedimento**, nome, descricao, duracao_estimada, preco_referencia        |
+| Entidade                   | Atributos |
+|----------------------------|-----------|
+| Cliente                    | **id_cliente**, nome_completo, telefone, email, data_cadastro, observacoes |
+| Profissional               | **id_profissional**, nome_completo, telefone, data_admissao, ativo |
+| Especialidade              | **id_especialidade**, nome, descricao |
+| Profissional_Especialidade | **id_profissional** (PK/FK), **id_especialidade** (PK/FK) |
+| Procedimento               | **id_procedimento**, nome, descricao, duracao_estimada, preco_referencia |
 | Agendamento                | **id_agendamento**, data_agendamento, hora_inicio, hora_fim, situacao, observacoes |
-| Pagamento                  | **id_pagamento**, valor_pago, data_pagamento, forma_pagamento                   |
-| Fornecedor                 | **id_fornecedor**, nome, telefone                                               |
-| Compra                     | **id_compra**, data_compra                                                      |
-| Insumo                     | **id_insumo**, nome, unidade_medida, quantidade_estoque, estoque_minimo         |
-| Movimentacao_Estoque       | **id_movimentacao**, tipo_movimentacao, quantidade, data_movimentacao           |
-| Fechamento_Caixa           | **id_fechamento**, data_inicio, data_fim, total_recebido                        |
-| Item_Compra (associativa)  | **id_item_compra**, quantidade, valor_unitario                                  |
+| Pagamento                  | **id_pagamento**, valor_pago, data_pagamento, forma_pagamento |
+| Fornecedor                 | **id_fornecedor**, nome, telefone |
+| Compra                     | **id_compra**, data_compra |
+| Insumo                     | **id_insumo**, nome, unidade_medida, quantidade_estoque, estoque_minimo |
+| Movimentacao_Estoque       | **id_movimentacao**, tipo_movimentacao, quantidade, data_movimentacao |
+| Fechamento_Caixa           | **id_fechamento**, data_inicio, data_fim, total_recebido |
+| Item_Compra (associativa)  | **id_item_compra**, quantidade, valor_unitario |
 
 **Relacionamentos e cardinalidades (mín, máx):**
 
