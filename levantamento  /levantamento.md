@@ -32,18 +32,6 @@ Os problemas abaixo foram identificados a partir das informações obtidas duran
 
 Esses problemas fundamentam a proposta do banco de dados e estão relacionados às entidades e consultas gerenciais apresentadas no README.md.
 
-### 1.3 Problemas e necessidades identificados
-
-Os problemas abaixo foram identificados a partir das informações obtidas durante a entrevista e da análise dos processos administrativos do Salão dos Primos.
-
-- **P1 — Agenda sem verificação de conflitos:** os agendamentos são registrados manualmente em caderno e WhatsApp, sem um mecanismo que impeça a sobreposição de horários de um mesmo profissional.
-- **P2 — Ausência de histórico organizado:** não existe um registro centralizado que permita consultar facilmente o histórico de atendimentos por cliente, profissional ou procedimento.
-- **P3 — Cancelamentos e remarcações sem registro estruturado:** os cancelamentos e as alterações de horários são comunicados pelo WhatsApp, dificultando o acompanhamento e a consulta dessas ocorrências.
-- **P4 — Valores e recebimentos sem controle centralizado:** os preços são definidos após a avaliação do cabelo do cliente, mas não existe um registro informatizado centralizado dos valores acordados e recebidos por atendimento.
-- **P5 — Insumos e compras sem controle informatizado:** não existe um sistema para acompanhar as compras realizadas, os fornecedores, as quantidades de insumos disponíveis e a necessidade de reposição.
-
-Esses problemas fundamentam a proposta do banco de dados e estão relacionados às entidades e consultas gerenciais apresentadas no README.md.
-
 ### 1.4 Escopo do sistema
 
 O projeto propõe um banco de dados relacional para organizar as informações do Salão dos Primos, contemplando os seguintes processos:
