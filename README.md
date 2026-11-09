@@ -463,9 +463,11 @@ A massa de dados é **fictícia**: nomes e telefones inventados, sem dados reais
 | Compra / Item_Compra       | 5 / 17    |                                                                                    |
 | Insumo                     | 10        | 3 abaixo do estoque mínimo                                                         |
 | Movimentacao_Estoque       | 35        | 17 entradas (das compras) e 18 saídas (consumo)                                    |
-| Fechamento_Caixa           | 4         | semanais, com total calculado pelos pagamentos                                     |
+| Fechamento_Caixa           | 4         | períodos semanais fictícios para teste; o salão realiza fechamento mensal          |
 
 **Por que esse volume:** o salão tem 4 profissionais, então 33 agendamentos em cerca de 6 semanas (05/10 a 12/11/2026) dão uma amostra proporcional ao porte, com variedade suficiente para as consultas.
+
+**Períodos de fechamento:** embora o salão realize fechamento de caixa mensalmente, os quatro fechamentos semanais desta massa são fictícios e foram incluídos exclusivamente para testar consultas e auditorias por período. Eles não representam a rotina real do estabelecimento.
 
 **Casos incluídos para testar:** agendamentos cancelados, clientes sem atendimento, atendimento concluído sem pagamento (A03), insumos abaixo do mínimo (G07), fornecedor sem compras (G08), formas de pagamento e semanas diferentes (G05, G06).
 
