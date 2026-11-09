@@ -484,6 +484,9 @@ Salao-dos-primos/
 │
 ├── README.md
 │
+├── apresentacao/
+│   └── Apresentacao_Salao_dos_Primo.pdf
+│
 ├── docs/
 │   ├── DER_conceitual.png
 │   ├── DER_logico.png
@@ -495,8 +498,8 @@ Salao-dos-primos/
 │   └── levantamento.md
 │
 └── evidencias/
-    ├── visita.jpg
-    └── entrevista.jpg
+    ├── entrevista.jpeg
+    └── visita.jpeg
 ```
 
 ### Links dos artefatos
@@ -508,6 +511,7 @@ Salao-dos-primos/
 - [Massa de dados](docs/massa_de_dados.sql)
 - [Levantamento](levantamento/levantamento.md)
 - [Evidências](evidencias)
+- [Apresentação final (pitch)](apresentacao/Apresentacao_Salao_dos_Primo.pdf)
 
 * * *
 
@@ -541,8 +545,15 @@ O grupo usou IA como apoio ao projeto. Este registro mostra a ferramenta, a etap
 
 | Ferramenta | Resposta recebida (resumo) | Fontes verificadas | O que foi rejeitado ou corrigido, e por quê |
 |------------|----------------------------|--------------------|---------------------------------------------|
-| ChatGPT (modelagem) | DERs com divergência | Os DERs estavam faltando informações e o auxílio da IA foi pedido mas tudo foi feito a mão |
-| Claude (Entrega 2)  | Lista de divergências entre o repositório e as exigências do professor; versões novas do README, do script SQL, da massa de dados, do dicionário de dados e do levantamento. | Slides da Entrega 2 do professor; repositório do grupo. | Foi feito para analisar oque estava faltando e ser arrumando |
+| ChatGPT (modelagem) | Apontou divergências entre os diagramas e a estrutura descrita. | DER conceitual, modelo lógico e informações da entrevista. | As sugestões foram conferidas manualmente; os diagramas foram ajustados para manter as entidades, atributos e relacionamentos consistentes. |
+| Claude (Entrega 2) | Apontou diferenças entre o repositório e as exigências da Entrega 2 e sugeriu revisões nos artefatos. | PDF da Entrega 2 do professor e arquivos da branch main. | Foram corrigidas descrições, consultas, regras e documentação. Sugestões que não correspondiam a fatos confirmados do salão não foram tratadas como realidade. |
+| Pesquisa com IA | Sugeriu processos comuns em salões de pequeno porte. | As informações específicas do Salão dos Primos foram confrontadas com a entrevista de Alaide, em 20/09/2026. | Sugestões genéricas não confirmadas pela responsável foram deixadas fora do escopo. Não foi registrada uma fonte externa específica de pesquisa nesta versão. |
+
+### Reflexão crítica sobre o uso de IA
+
+A IA ajudou a organizar a documentação e a apontar inconsistências, mas também pode sugerir processos que não existem no salão ou tratar hipóteses como fatos. Por isso, as informações sobre a rotina do estabelecimento foram confrontadas com a entrevista e as observações presenciais. Um exemplo foi a definição dos preços: o valor real depende da avaliação do cabelo da cliente, então o preço de referência não foi tratado como preço fixo. Outro cuidado foi diferenciar o fechamento mensal praticado pelo salão dos fechamentos semanais fictícios usados apenas para testar a massa de dados.
+
+A revisão automática dos arquivos não substitui a execução integral do script no MySQL Workbench. As consultas, constraints e triggers ainda precisam ser validadas no ambiente de execução antes da demonstração.
 
 
 
