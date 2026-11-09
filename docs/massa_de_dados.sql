@@ -211,7 +211,8 @@ UPDATE Insumo i
         WHERE m.id_insumo = i.id_insumo)
  WHERE i.id_insumo > 0;
 
--- Fechamentos de caixa semanais: o total é a soma dos pagamentos do período (RN10)
+-- Massa fictícia: os fechamentos semanais são apenas períodos de teste; o salão realiza fechamento mensal.
+-- O total de cada período é a soma dos pagamentos correspondentes (RN10)
 INSERT INTO Fechamento_Caixa (data_inicio, data_fim, total_recebido)
 SELECT '2026-10-05', '2026-10-11', COALESCE(SUM(valor_pago), 0)
   FROM Pagamento WHERE data_pagamento BETWEEN '2026-10-05' AND '2026-10-11';
