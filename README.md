@@ -235,7 +235,7 @@ O DER conceitual representa as entidades, seus atributos e os relacionamentos, n
 
 ## 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
 
-Cada entidade virou uma tabela e cada atributo virou uma coluna, com tipo definido (ver [dicionário de dados](docs/dicionario_dados.html)). Os relacionamentos foram convertidos conforme a cardinalidade:
+Cada entidade virou uma tabela e cada atributo virou uma coluna, com tipo definido [Visualizar Dicionário de Dados](https://francielesz.github.io/Salao-dos-primos/docs/dicionario_dados.html). Os relacionamentos foram convertidos conforme a cardinalidade:
 
 | Relacionamento                          | Cardinalidade | Como foi convertido                                                              |
 |-----------------------------------------|---------------|----------------------------------------------------------------------------------|
