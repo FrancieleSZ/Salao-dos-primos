@@ -196,7 +196,7 @@ O DER conceitual representa as entidades, seus atributos e os relacionamentos, n
 | Profissional_Especialidade | **id_profissional** (PK/FK), **id_especialidade** (PK/FK) |
 | Procedimento               | **id_procedimento**, nome, descricao, duracao_estimada, preco_referencia |
 | Agendamento                | **id_agendamento**, data_agendamento, hora_inicio, hora_fim, situacao, observacoes |
-| Pagamento                  | **id_pagamento**, valor_pago, data_pagamento, forma_pagamento |
+| Pagamento                 | **id_pagamento**, valor_pago, data_pagamento, forma_pagamento |
 | Fornecedor                 | **id_fornecedor**, nome, telefone |
 | Compra                     | **id_compra**, data_compra |
 | Insumo                     | **id_insumo**, nome, unidade_medida, quantidade_estoque, estoque_minimo |
