@@ -6,7 +6,7 @@
 
 - **Nome:** Salão dos Primos
 - **Natureza:** Estabelecimento comercial do ramo de beleza e estética.
-- **Responsável:** Alaide — confirmar nome completo.
+- **Responsável:** Alaide Souza Lacerda.
 - **Endereço:** R. Bernardino Vergueiro, 276 - Jardim Jaú (Zona Leste), São Paulo - SP, 03710-060.
 - **Telefone para contato:** 11 94696-7621.
 - **Quantidade de profissionais:** aproximadamente 4.
@@ -85,8 +85,8 @@ Para comprovar a existência da organização e o acesso do grupo, poderão ser 
 ### 2.1 Identificação da entrevista
 
 - **Organização:** Salão dos Primos.
-- **Entrevistada:** Alaide — confirmar nome completo.
-- **Função:** Responsável pelo estabelecimento — confirmar.
+- **Entrevistada:** Alaide Souza Lacerda.
+- **Função:** Alaide.
 - **Data:** 20/09/2026.
 - **Local:** Salão dos Primos.
 - **Integrantes participantes:** Franciele Souza.
